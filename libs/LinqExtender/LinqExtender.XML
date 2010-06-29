@@ -1,0 +1,2028 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LinqExtender</name>
+    </assembly>
+    <members>
+        <member name="T:LinqExtender.Attributes.OriginalFieldNameAttribute">
+            <summary>
+            Atttribute class for defining original field name for a property.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Attributes.OriginalFieldNameAttribute.#ctor(System.String)">
+            <summary>
+            Create a new instance of the <see cref="T:LinqExtender.Attributes.OriginalFieldNameAttribute"/> for a specific field name.
+            </summary>
+            <param name="fieldName"></param>
+        </member>
+        <member name="P:LinqExtender.Attributes.OriginalFieldNameAttribute.FieldName">
+            <summary>
+            Gets the original field name set by user.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Attributes.OriginalEntityNameAttribute">
+            <summary>
+            Use this to mark if entity name is different than class name.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Attributes.OriginalEntityNameAttribute.#ctor(System.String)">
+            <summary>
+            Creates a new instance of the attribute for an entity name.
+            </summary>
+            <param name="entityName"></param>
+        </member>
+        <member name="P:LinqExtender.Attributes.OriginalEntityNameAttribute.EntityName">
+            <summary>
+            maps to the name of the original enity name.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Attributes.UniqueIdentifierAttribute">
+            <summary>
+             Defines a property to be unique.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Attributes.IgnoreAttribute">
+            <summary>
+            Under this attribute present, property will be ignored by extender.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Bucket">
+            <summary>
+            Bucket is stuctured representation of the orignal query object.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Interfaces.IBucket">
+            <summary>
+            Interfae defining Bucket object and its accesible proeprties.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Interfaces.IBucket.Name">
+            <summary>
+            Gets the name of the <see cref="T:LinqExtender.Bucket"/> object, either the class name or value of <c>OriginalEntityName</c>, if used.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Interfaces.IBucket.IsDirty">
+            <summary>
+            Gets/Sets <value>true</value> if an where is clause used.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Interfaces.IBucket.ItemsToTake">
+            <summary>
+            Gets/Sets Items to Take from collection.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Interfaces.IBucket.ItemsToSkip">
+            <summary>
+            Gets/ Sets items to skip from start.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Interfaces.IBucket.Items">
+            <summary>
+            Gets <see cref="T:LinqExtender.BucketItem"/> for property.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Interfaces.IBucket.OrderByClause">
+            <summary>
+            Gets the order by information set in query.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Interfaces.IBucket.UniqueItems">
+            <summary>
+            Returns property name for which the UniqueIdentifierAttribute is defined.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Interfaces.IBucket.CurrentNode">
+            <summary>
+            Gets the tree node represting itself and its child nodes.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Bucket.#ctor">
+            <summary>
+            Creates a default Bucket object, with self reference.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Bucket.Clear">
+            <summary>
+            Clears out any used properties.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Bucket.Name">
+            <summary>
+            Gets the name of the <see cref="T:LinqExtender.Bucket"/> object, either the class name or value of <c>OriginalEntityName</c>, if used.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Bucket.IsDirty">
+            <summary>
+            Gets/Sets <value>true</value> if an where is clause used.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Bucket.ItemsToTake">
+            <summary>
+            Gets/Sets Items to Take from collection.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Bucket.ItemsToSkip">
+            <summary>
+            Gets/ Sets items to skip from start.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Bucket.UniqueItems">
+            <summary>
+            Returns property name for which the UniqueIdentifierAttribute is defined.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Bucket.Items">
+            <summary>
+            Contains property items for current bucket.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Bucket.CurrentNode">
+            <summary>
+            Gets the first tree node fro simplied expression tree.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Bucket.CurrentTreeNode">
+            <summary>
+            Gets/Sets the current <see cref="P:LinqExtender.Bucket.CurrentNode"/>
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Bucket.OrderByClause">
+            <summary>
+            Holds order by information.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Bucket.UniqueProperties">
+            <summary>
+            Gets unique identifier properties.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Bucket.OrderByInfo">
+            <summary>
+            The Filled up with query order by information.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Bucket.OrderByInfo.FieldName">
+            <summary>
+            Gets the name of the field on which the order by will be made.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Bucket.OrderByInfo.IsAscending">
+            <summary>
+            Gets true if the order by is ascending.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.BucketImpl`1">
+            <summary>
+            internal implementation of bucket object
+            </summary>
+        </member>
+        <member name="M:LinqExtender.BucketImpl`1.Clear">
+            <summary>
+            clear outs the data.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.BucketImpl`1.With(LinqExtender.Configuration.Serialization.ClassElement)">
+            <summary>
+            Takes a settings xml to process the creation of <see cref="T:LinqExtender.BucketImpl`1"/>
+            </summary>
+            <param name="classElement">settings xml defined by user.</param>
+            <returns></returns>
+        </member>
+        <member name="P:LinqExtender.BucketImpl`1.IsAlreadyProcessed">
+            <summary>
+            marks if the bucket is already prepared or not.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.BucketImpl`1.IsAsc">
+            <summary>
+            internal use : to check if the bucket object should be sorted in asc or dsc
+            </summary>
+        </member>
+        <member name="P:LinqExtender.BucketImpl`1.CurrentExpessionType">
+            <summary>
+            Defines the current expression node.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.BucketImpl`1.ClauseItemCount">
+            <summary>
+            number of items queried in <c>Where</c> caluse
+            </summary>
+        </member>
+        <member name="P:LinqExtender.BucketImpl`1.Level">
+            <summary>
+            gets the Level of the clause item
+            </summary>
+        </member>
+        <member name="P:LinqExtender.BucketImpl`1.TreeNodeInfo.Id">
+            <summary>
+            identifier
+            </summary>
+        </member>
+        <member name="T:LinqExtender.OperatorType">
+            <summary>
+            Type of operator used in where clause.
+            </summary>
+        </member>
+        <member name="F:LinqExtender.OperatorType.NONE">
+            <summary>
+            Used for first item in where entry
+            </summary>
+        </member>
+        <member name="F:LinqExtender.OperatorType.AND">
+            <summary>
+            Used for <![CDATA[ && ]]>
+            </summary>
+        </member>
+        <member name="F:LinqExtender.OperatorType.OR">
+            <summary>
+            Used for  ||
+            </summary>
+        </member>
+        <member name="T:LinqExtender.BucketItem">
+            <summary>
+            Contains the detail for quried or valued items.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.BucketItem.#ctor">
+            <summary>
+            Default constructor for <see cref="T:LinqExtender.BucketItem"/>
+            </summary>
+        </member>
+        <member name="M:LinqExtender.BucketItem.#ctor(System.Type,System.String,System.String,System.Type,System.Object,System.Boolean,LinqExtender.RelationType,System.Boolean)">
+            <summary>
+            Creates a new bucket object.
+            </summary>
+            <param name="underlyingType">Type of the bucket object</param>
+            <param name="name">Name of the item that maps with source</param>
+            <param name="propertyName">Name of property regardless of OriginalFieldNameAttribute</param>
+            <param name="propertyType">Type of the underlying property.</param>
+            <param name="value">Value of the item</param>
+            <param name="unique">if unique attriube is defined for item</param>
+            <param name="relationType">Eelation type , defines what type of expression, equal, lessthan or other.</param>
+            <param name="queryVisible">Marks that it is to be used in query expression</param>
+        </member>
+        <member name="M:LinqExtender.BucketItem.SetValue(System.Object,System.Object)">
+            <summary>
+            Sets the value to target object.
+            </summary>
+            <param name="target"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.BucketItem.GetValue(System.Object)">
+            <summary>
+            Gets the value for a target object.
+            </summary>
+            <param name="target"></param>
+        </member>
+        <member name="M:LinqExtender.BucketItem.FindAttribute(System.Type)">
+            <summary>
+            finds the attribute, within property
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="P:LinqExtender.BucketItem.Values">
+            <summary>
+            Return multiple values if item quried with different values in same where clause.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.BucketItem.Value">
+            <summary>
+            Return values for quried item in where clause. 
+            Optionally, tries to combine the value for nested class queries.
+            Optionally, creates object[] for system and abstract types.
+            Return values in raw format regardless of its releation type.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.BucketItem.HasMultipleValues">
+            <summary>
+            Determines if the item is used multiple times in where clause.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.BucketItem.RelationType">
+            <summary>
+            Return <c>RelationType</c> enum for the quried item.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.BucketItem.Name">
+            <summary>
+             Name of the property or value of <c>OriginalFieldNameAttribute</c> if used.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.BucketItem.ProperyName">
+            <summary>
+            Name of property that bucketItem represents.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.BucketItem.PropertyType">
+            <summary>
+            Type of the property that bucketItem represents.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.BucketItem.Unique">
+            <summary>
+            Gets if a property is unique.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.BucketItem.IsModified">
+            <summary>
+            <value>true</value> if user updatas the property value manually.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.BucketItem.Visible">
+            <summary>
+            Determines if the item is not maked to be Ignored by <c>IgnoreAttribute</c>
+            </summary>
+        </member>
+        <member name="P:LinqExtender.BucketItem.DeclaringObject">
+            <summary>
+            Gets the underlying object type.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.BucketItem.QueryCondition">
+            <summary>
+            Represents the conditioal operators and its compared values for where clause.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.BucketItem.QueryCondition.#ctor(System.Object,LinqExtender.RelationType)">
+            <summary>
+            Creates a new instance of the <see cref="T:LinqExtender.BucketItem.QueryCondition"/>
+            </summary>
+            <param name="value">value</param>
+            <param name="type">type of operation</param>
+        </member>
+        <member name="P:LinqExtender.BucketItem.QueryCondition.Value">
+            <summary>
+            Gets the value of the query entry
+            </summary>
+        </member>
+        <member name="P:LinqExtender.BucketItem.QueryCondition.RelationType">
+            <summary>
+            Represents the comparison operators like !=, >=, etc
+            </summary>
+        </member>
+        <member name="T:LinqExtender.ClassGenerator">
+            <summary>
+            Generates a new object from existing one using the user's setup.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Interfaces.IClassGenerator">
+            <summary>
+            Entry point interface for <see cref="T:LinqExtender.ClassGenerator"/>
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Interfaces.IClassGenerator.BuildDynamicAssembly">
+            <summary>
+            Builds the dynamic assembly.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Interfaces.IClassGenerator.CreateType(System.Type,System.Type)">
+            <summary>
+            Builds a type in the dynamic assembly, if already the type is not created.
+            </summary>
+            <param name="parentType">type of object or interfae to implement</param>
+            <param name="interfaceType">parent interface type.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Interfaces.IClassGenerator.AddProperty(System.String,System.Object)">
+            <summary>
+            Adds properties to the dynamic type.
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Interfaces.IClassGenerator.CreateInstance``1(System.Object)">
+            <summary>
+            Creates a new instance of the dynamically generated type.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source">source object from where to copy the properties.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.ClassGenerator.BuildDynamicAssembly">
+            <summary>
+            Builds a dynamic assembly with <see cref="F:System.Reflection.Emit.AssemblyBuilderAccess.RunAndSave"/> mode.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.ClassGenerator.CreateType(System.Type,System.Type)">
+            <summary>
+            Builds a type in the dynamic assembly, if already the type is not created.
+            </summary>
+            <param name="parent">type of object or interfae to implement</param>
+            <param name="interfaceType">parent interface type.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.ClassGenerator.AddProperty(System.String,System.Object)">
+            <summary>
+            Adds a property dynamically to the type, with specific type.
+            </summary>
+            <param name="name">name of the property</param>
+            <param name="value">value of the property</param>
+            <returns><see cref="T:LinqExtender.Interfaces.IClassGenerator"/></returns>
+        </member>
+        <member name="M:LinqExtender.ClassGenerator.CreateInstance``1(System.Object)">
+            <summary>
+            Creates a new instance of the dynamically generated type.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source">source object from where to copy the properties.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.ClassGenerator.GetTypeFromValue(System.Object)">
+            <summary>
+            Gets a <see cref="T:System.Type"/> from provided <value>value</value>
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="P:LinqExtender.ClassGenerator.Instance">
+            <summary>
+            Creates and gets a new instance <see cref="T:LinqExtender.ClassGenerator"/> class.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Collection.ReadOnlyQueryCollection`1">
+            <summary>
+            Contains projected read-only query objects.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Interfaces.IQuery`1">
+            <summary>
+            Query item interface for direct calls on collection.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:LinqExtender.Interfaces.IQuery`1.Single">
+            <summary>
+            Returns a single item from the collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Interfaces.IQuery`1.SingleOrDefault">
+            <summary>
+            Returns a single item or default value if empty.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Interfaces.IQuery`1.First">
+            <summary>
+            Returns the first item from the collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Interfaces.IQuery`1.FirstOrDefault">
+            <summary>
+            Returns first item or default value if empty.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Interfaces.IQuery`1.Last">
+            <summary>
+            Returns the last item from the collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Interfaces.IQuery`1.LastOrDefault">
+            <summary>
+            Returns last item or default value if empty.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:LinqExtender.Interfaces.IQuery">
+            <summary>
+            Non generic query call interface.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Interfaces.IQuery.Any">
+            <summary>
+            Return true if there is any item in collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Interfaces.IQuery.Count">
+            <summary>
+            Returns the count of items in the collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:LinqExtender.Collection.ReadOnlyQueryCollection`1.Items">
+            <summary>
+            collection items 
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Collection.ReadOnlyQueryCollection`1.LinqExtender#Interfaces#IQuery{T}#Single">
+            <summary>
+            Returns a single item from the collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Collection.ReadOnlyQueryCollection`1.SingleOrDefault">
+            <summary>
+            Returns a single item or default value if empty.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Collection.ReadOnlyQueryCollection`1.Any">
+            <summary>
+            Return true if there is any item in collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Collection.ReadOnlyQueryCollection`1.Count">
+            <summary>
+            Returns the count of items in the collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Collection.ReadOnlyQueryCollection`1.LinqExtender#Interfaces#IQuery{T}#First">
+            <summary>
+            Returns the first item from the collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Collection.ReadOnlyQueryCollection`1.FirstOrDefault">
+            <summary>
+            Returns first item or default value if empty.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Collection.ReadOnlyQueryCollection`1.LinqExtender#Interfaces#IQuery{T}#Last">
+            <summary>
+            Returns the last item from the collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Collection.ReadOnlyQueryCollection`1.LastOrDefault">
+            <summary>
+            Returns last item or default value if empty.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:LinqExtender.Configuration.All">
+            <summary>
+            Used for covering settings for all class types.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Configuration.ClassDescriptor">
+            <summary>
+            Contains details for the class.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Configuration.ClassDescriptor.op_Implicit(LinqExtender.Configuration.ClassDescriptor)~LinqExtender.Configuration.Serialization.ClassElement">
+            <summary>
+            Builds and returns the xml element for the class.
+            </summary>
+            <param name="descriptor"></param>
+            <returns></returns>
+        </member>
+        <member name="P:LinqExtender.Configuration.ClassDescriptor.Key">
+            <summary>
+            Gets/Sets key for the class, normally contains the name of the class.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Configuration.ClassDescriptor.Name">
+            <summary>
+            Gets/ Sets the name of the class.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Configuration.ClassDescriptor.PropertyDescriptors">
+            <summary>
+            Sets the info for each property.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Configuration.Extender`1">
+            <summary>
+            Fluent generic entry point for configuration settings.
+            </summary>
+            <typeparam name="T">query object</typeparam>
+        </member>
+        <member name="T:LinqExtender.Configuration.IClassSettings`1">
+            <summary>
+            Defines class settings.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Configuration.IClassSettings`1.MapToEntity(System.String)">
+            <summary>
+            Maps a class to an entity.
+            </summary> 
+            <param name="entityName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Configuration.IClassSettings`1.InstantiateIn(System.Object)">
+            <summary>
+            Builds and intantiates <see cref="T:LinqExtender.Configuration.Serialization.ExtenderElement"/> and invokes the <see cref="M:LinqExtender.Query`1.BuildSettingElement(System.String)"/> method.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Configuration.IClassSettings`1.Begin">
+            <summary>
+            Gets a iterator for setting property.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Configuration.Extender`1.#ctor(LinqExtender.Configuration.Extender,LinqExtender.Configuration.ClassDescriptor)">
+            <summary>
+            Creates a new instance of <see cref="T:LinqExtender.Configuration.Extender`1"/> class.
+            </summary>
+            <param name="extender">generic <see cref="T:LinqExtender.Configuration.Extender"/></param>
+            <param name="classDescriptor">class settings.</param>
+        </member>
+        <member name="M:LinqExtender.Configuration.Extender`1.MapToEntity(System.String)">
+            <summary>
+            Maps a class to an entity.
+            </summary> 
+            <param name="entityName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Configuration.Extender`1.InstantiateIn(System.Object)">
+            <summary>
+            Builds and intantiates <see cref="T:LinqExtender.Configuration.Serialization.ExtenderElement"/> and invokes <see cref="M:LinqExtender.Query`1.BuildSettingElement(System.String)"/> method
+            to build the <see cref="T:LinqExtender.Configuration.Serialization.ClassElement"/> for current type.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Configuration.Extender`1.Begin">
+            <summary>
+            Property Settings iterator.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Configuration.PropertyDescriptor">
+            <summary>
+            Defines list of action properties for a a specific proeprty.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Configuration.PropertyDescriptor.Name">
+            <summary>
+            Gets/Sets the name of the property.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Configuration.PropertyDescriptor.Properties">
+            <summary>
+            Defines the map for proeprties.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Configuration.Serialization.ClassElement">
+            <summary>
+            Contains configuration details of the class node.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Configuration.Serialization.ClassElement.EntityName">
+            <summary>
+            Gets/Sets the entity name where the query object should be mapped.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Configuration.Serialization.ClassElement.Name">
+             <summary>
+            Gets/Sets name of the query obeject.
+             </summary>
+        </member>
+        <member name="P:LinqExtender.Configuration.Serialization.ClassElement.Properties">
+            <summary>
+            Gets or sets properties configuration.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Configuration.Extender">
+            <summary>
+            Fluent entry point for configuration settings.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Configuration.IExtenderSettings">
+            <summary>
+            Settings iterator interface.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Configuration.IExtenderSettings.For``1">
+            <summary>
+            Initates extender setting for specific for <typeparamref name="T"/>
+            </summary>
+            <typeparam name="T">query object</typeparam>
+            <returns><see cref="T:LinqExtender.Configuration.Extender`1"/></returns>
+        </member>
+        <member name="M:LinqExtender.Configuration.IExtenderSettings.InstantiateIn(System.Object)">
+            <summary>
+            Builds and intantiates <see cref="T:LinqExtender.Configuration.Serialization.ExtenderElement"/> and invokes the <see cref="M:LinqExtender.Query`1.BuildSettingElement(System.String)"/> method
+            to build the <see cref="T:LinqExtender.Configuration.Serialization.ClassElement"/> for current type.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Configuration.Extender.#ctor">
+            <summary>
+            Creates a new instace <see cref="T:LinqExtender.Configuration.Extender"/> class.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Configuration.Extender.For``1">
+            <summary>
+            Initates extender setting for specific for <typeparamref name="T"/>
+            </summary>
+            <typeparam name="T">query object</typeparam>
+            <returns><see cref="T:LinqExtender.Configuration.Extender`1"/></returns>
+        </member>
+        <member name="M:LinqExtender.Configuration.Extender.InstantiateIn(System.Object)">
+            <summary>
+            Builds and intantiates <see cref="T:LinqExtender.Configuration.Serialization.ExtenderElement"/> and invokes <see cref="M:LinqExtender.Query`1.BuildSettingElement(System.String)"/> method
+            to build the <see cref="T:LinqExtender.Configuration.Serialization.ClassElement"/> for current type.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Configuration.Extender.Settings">
+            <summary>
+            Gets the instance for fluent settings.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Configuration.IPropertySettings`1">
+            <summary>
+            Defines settings for property.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Configuration.IPropertySettings`1.Property(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            Intializes the expected property
+            </summary>
+            <param name="expression"><see cref="T:System.Linq.Expressions.Expression`1"/></param>
+            <returns>Current instance of <see cref="T:LinqExtender.Configuration.IPropertySettings`1"/></returns>
+        </member>
+        <member name="M:LinqExtender.Configuration.IPropertySettings`1.MapToAttribute(System.String)">
+            <summary>
+            Maps a property to a repository field.
+            </summary>
+            <param name="attributeName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Configuration.IPropertySettings`1.MarkToIgnore">
+            <summary>
+            Marks a property to be ignored by extender.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:LinqExtender.Configuration.IPropertySettings`1.MarkAsUnique">
+            <summary>
+            Marks a property as unique.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Configuration.IPropertySettings`1.End">
+            <summary>
+            Terminates a property settings 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:LinqExtender.Configuration.Serialization.PropertyElement">
+            <summary>
+            Contains configuration details for the property.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Configuration.Serialization.PropertyElement.AttributeName">
+            <summary>
+            Original attribute where it is mapped.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Configuration.Serialization.PropertyElement.IsUnique">
+            <summary>
+            Marks if a proeprty is unique.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Configuration.Serialization.PropertyElement.Ignore">
+            <summary>
+            Gets/Sets <value>true</value> if a property to be ignored.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Configuration.Serialization.PropertyElement.Name">
+            <summary>
+            Gets/Sets the property name for the query object.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Configuration.Serialization.ExtenderElement">
+            <summary>
+            Object representation of extender configuration
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Configuration.Serialization.ExtenderElement.op_Implicit(LinqExtender.Configuration.Serialization.ExtenderElement)~System.String">
+            <summary>
+            Converts the extender element to its equavalent xml form.
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="P:LinqExtender.Configuration.Serialization.ExtenderElement.ClassElements">
+            <summary>
+            Gets or sets multiple class elements.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Configuration.PropertySettings`1">
+            <summary>
+            Defines the config settings for extender.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Configuration.PropertySettings`1.#ctor(LinqExtender.Configuration.ClassDescriptor)">
+            <summary>
+            Creates a new instance of <see cref="T:LinqExtender.Configuration.PropertySettings`1"/> class.
+            </summary>
+            <param name="classDescriptor">class settings</param>
+        </member>
+        <member name="M:LinqExtender.Configuration.PropertySettings`1.#ctor(LinqExtender.Configuration.Extender{`0},LinqExtender.Configuration.ClassDescriptor)">
+            <summary>
+            Creates a new instance of <see cref="T:LinqExtender.Configuration.PropertySettings`1"/> class.
+            </summary>
+            <param name="extender">extender object</param>
+            <param name="classDescriptor"> class descriptor</param>
+        </member>
+        <member name="M:LinqExtender.Configuration.PropertySettings`1.Property(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            Intializes and sets expected property for processing.
+            </summary>
+            <param name="expression">expression for the property</param>
+            <returns>Current instance of <see cref="T:LinqExtender.Configuration.IPropertySettings`1"/></returns>
+        </member>
+        <member name="M:LinqExtender.Configuration.PropertySettings`1.MarkToIgnore">
+            <summary>
+            Marks a property to be ignored by extender.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:LinqExtender.Configuration.PropertySettings`1.MarkAsUnique">
+            <summary>
+            Marks a property as unique.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Configuration.PropertySettings`1.End">
+            <summary>
+            Appends the property setup to settings colleciton.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Configuration.XmlToObject`1">
+            <summary>
+            Contains method for converting xml string to associted object and vice-versa.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:LinqExtender.Configuration.XmlToObject`1.Deserialize(System.String)">
+            <summary>
+            Deserializes the xml.
+            </summary>
+            <param name="xml"></param>
+            <returns>object form of the xml</returns>
+        </member>
+        <member name="M:LinqExtender.Configuration.XmlToObject`1.Serialize(`0)">
+            <summary>
+            Serialized the element to xml form.
+            </summary>
+            <param name="element"></param>
+            <returns>xml string.</returns>
+        </member>
+        <member name="T:LinqExtender.Fluent.FluentBucket">
+            <summary>
+            Fluent implementation for the bucket object.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Fluent.FluentBucket.#ctor(LinqExtender.Interfaces.IBucket)">
+            <summary>
+            Create a new instance of <see cref="T:LinqExtender.Fluent.FluentBucket"/> for a <see cref="F:LinqExtender.Fluent.FluentBucket.bucket"/>
+            </summary>
+            <param name="bucket"></param>
+        </member>
+        <member name="M:LinqExtender.Fluent.FluentBucket.As(LinqExtender.Interfaces.IBucket)">
+            <summary>
+            Creates a fluent wrapper of the original bucket object.
+            </summary>
+            <param name="bucket"></param>
+            <returns><see cref="T:LinqExtender.Fluent.FluentBucket"/></returns>
+        </member>
+        <member name="M:LinqExtender.Fluent.FluentBucket.Translate(LinqExtender.FormatProvider.IFormatProvider)">
+            <summary>
+            Translates the fluent bucket to a equavalant literal format.
+            </summary>
+            <param name="formatProvider">fromat provider implemenatation</param>
+            <returns>translated string</returns>
+        </member>
+        <member name="P:LinqExtender.Fluent.FluentBucket.Entity">
+            <summary>
+            Creates and gets a new fluent entity object.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Fluent.FluentBucket.IsDirty">
+            <summary>
+            Gets true if any where clause is used.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Fluent.FluentBucket.ExpressionTree">
+            <summary>
+            Gets the node representing  <see cref="T:LinqExtender.BucketItem"/> and their relational info.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Fluent.FluentBucket.For">
+            <summary>
+            enables BucketItem
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Fluent.FluentEntity">
+            <summary>
+            Contains Entity Info.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Fluent.FluentEntity.#ctor(LinqExtender.Interfaces.IBucket)">
+            <summary>
+            Creates a new instance of <see cref="T:LinqExtender.Fluent.FluentEntity"/>
+            </summary>
+            <param name="bucket"></param>
+        </member>
+        <member name="P:LinqExtender.Fluent.FluentEntity.Name">
+            <summary>
+             Name of the entity, can be overriden by <c>OriginalEntityNameAttribute</c>
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Fluent.FluentEntity.ItemsToFetch">
+            <summary>
+            Gets items to fetch from source.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Fluent.FluentEntity.ItemsToSkipFromStart">
+            <summary>
+            Default  0, number of items to skip from start.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Fluent.FluentEntity.UniqueAttribte">
+            <summary>
+            List of unique column name.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Fluent.FluentEntity.OrderBy">
+            <summary>
+            Gets an intance for the <see cref="T:LinqExtender.Fluent.FluentEntity.FluentOrderBy"/>
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Fluent.FluentEntity.FluentOrderBy">
+            <summary>
+            Defines a fluent implentation for order by query.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Fluent.FluentEntity.FluentOrderBy.#ctor(LinqExtender.Interfaces.IBucket)">
+            <summary>
+            Creates a new instance of <see cref="T:LinqExtender.Fluent.FluentEntity.FluentOrderBy"/>
+            </summary>
+            <param name="bucket"></param>
+        </member>
+        <member name="M:LinqExtender.Fluent.FluentEntity.FluentOrderBy.Process(LinqExtender.Fluent.FluentEntity.FluentOrderBy.Callback)">
+            <summary>
+            Does a callback to process the order by used in where clause.
+            </summary>
+            <param name="callback"></param>
+        </member>
+        <member name="P:LinqExtender.Fluent.FluentEntity.FluentOrderBy.IfUsed">
+            <summary>
+            Gets if an order by is used in query.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Fluent.FluentEntity.FluentOrderBy.Callback">
+            <summary>
+            Callback handler for <see cref="T:LinqExtender.Fluent.FluentEntity.FluentOrderBy"/>
+            </summary>
+            <param name="field">field name</param>
+            <param name="ascending">bool for sort order</param>
+        </member>
+        <member name="T:LinqExtender.Fluent.FluentExpressionTree">
+            <summary>
+            Fluent implementation for the simplified expression tree.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Fluent.FluentExpressionTree.#ctor(LinqExtender.TreeNode)">
+            <summary>
+            Creates a new instance of the <see cref="T:LinqExtender.Fluent.FluentExpressionTree"/>
+            </summary>
+            <param name="node"></param>
+        </member>
+        <member name="M:LinqExtender.Fluent.FluentExpressionTree.DescribeContainerAs``1(``0)">
+            <summary>
+            Describes the contain for which the express tree will be evaluated.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="reference"></param>
+            <returns></returns>
+        </member>
+        <member name="P:LinqExtender.Fluent.FluentExpressionTree.Node">
+            <summary>
+            Gets a <see cref="T:LinqExtender.TreeNode"/>
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Fluent.FluentExpressionTree`1">
+            <summary>
+            Non generic implemenation of the fluent expression tree.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:LinqExtender.Fluent.FluentExpressionTree`1.#ctor(LinqExtender.TreeNode)">
+            <summary>
+            Creates a new Settings of the <see cref="T:LinqExtender.Fluent.FluentExpressionTree"/>
+            </summary>
+            <param name="node"></param>
+        </member>
+        <member name="M:LinqExtender.Fluent.FluentExpressionTree`1.#ctor(LinqExtender.TreeNode,`0)">
+            <summary>
+            Creates a new Settings of the <see cref="T:LinqExtender.Fluent.FluentExpressionTree"/>
+            </summary>
+            <param name="node"></param>
+            <param name="reference"><typeparamref name="T"/></param>
+        </member>
+        <member name="M:LinqExtender.Fluent.FluentExpressionTree`1.Begin(LinqExtender.Fluent.FluentExpressionTree{`0}.BeginHandler)">
+            <summary>
+            Invoked for starting <see cref="T:LinqExtender.TreeNode"/>
+            </summary>
+            <param name="beginHandler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Fluent.FluentExpressionTree`1.End(LinqExtender.Fluent.FluentExpressionTree{`0}.EndHandler)">
+            <summary>
+            Invoked for closing the <see cref="T:LinqExtender.TreeNode"/>
+            </summary>
+            <param name="endHandler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Fluent.FluentExpressionTree`1.Root(LinqExtender.Fluent.FluentExpressionTree{`0}.RootHandler)">
+            <summary>
+            Invoked for root <see cref="T:LinqExtender.TreeNode"/>
+            </summary>
+            <param name="rootHandler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Fluent.FluentExpressionTree`1.EachLeaf(LinqExtender.Fluent.FluentExpressionTree{`0}.ItemHandler)">
+            <summary>
+            Invoked foreach Leaf
+            </summary>
+            <param name="itemHandler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Fluent.FluentExpressionTree`1.Execute">
+            <summary>
+            Builds the logical tree for the expression.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Fluent.FluentExpressionTree`1.BeginHandler">
+            <summary>
+            Begin <see cref="T:LinqExtender.TreeNode"/> handler.
+            </summary>
+            <param name="sender"></param>
+        </member>
+        <member name="T:LinqExtender.Fluent.FluentExpressionTree`1.EndHandler">
+            <summary>
+            Closing <see cref="T:LinqExtender.TreeNode"/> handler.
+            </summary>
+            <param name="sender"></param>
+        </member>
+        <member name="T:LinqExtender.Fluent.FluentExpressionTree`1.RootHandler">
+            <summary>
+            Root <see cref="T:LinqExtender.TreeNode"/>  handler
+            </summary>
+            <param name="sender"></param>
+            <param name="operatorType"></param>
+        </member>
+        <member name="T:LinqExtender.Fluent.FluentExpressionTree`1.ItemHandler">
+            <summary>
+            Leaf node handler.
+            </summary>
+            <param name="sender"></param>
+            <param name="item"></param>
+        </member>
+        <member name="T:LinqExtender.Fluent.FluentIterator">
+            <summary>
+            Fluent iterator entry point.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Fluent.FluentIterator.#ctor(LinqExtender.Interfaces.IBucket)">
+            <summary>
+            Create a new instance of <see cref="T:LinqExtender.Fluent.FluentIterator"/> for <see cref="F:LinqExtender.Fluent.FluentIterator.bucket"/>
+            </summary>
+            <param name="bucket"></param>
+        </member>
+        <member name="M:LinqExtender.Fluent.FluentIterator.Item(System.String)">
+            <summary>
+             Gets a <see cref="T:LinqExtender.BucketItem"/> for name
+            </summary>
+            <param name="itemName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Fluent.FluentIterator.Item``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            Gets <see cref="T:LinqExtender.BucketItem"/> for a property.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="expression"></param>
+            <returns><see cref="T:LinqExtender.BucketItem"/></returns>
+        </member>
+        <member name="P:LinqExtender.Fluent.FluentIterator.EachItem">
+            <summary>
+            Gets fluent <see cref="T:LinqExtender.BucketItem"/> collection.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Fluent.FluentIterator.ItemCollection">
+            <summary>
+            Fluent Item collection implementation.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Fluent.FluentIterator.ItemCollection.#ctor(LinqExtender.Interfaces.IBucket)">
+            <summary>
+            Create a new instance of fluent bucket item.
+            </summary>
+            <param name="bucket"></param>
+        </member>
+        <member name="M:LinqExtender.Fluent.FluentIterator.ItemCollection.Match(System.Predicate{LinqExtender.BucketItem})">
+            <summary>
+            Matches an <see cref="T:LinqExtender.BucketItem"/> for a predicate.
+            </summary>
+            <param name="m"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Fluent.FluentIterator.ItemCollection.Process(LinqExtender.Fluent.FluentIterator.ItemCollection.Callback)">
+            <summary>
+            Raises a callback.
+            </summary>
+            <param name="callback"></param>
+        </member>
+        <member name="T:LinqExtender.Fluent.FluentIterator.ItemCollection.Callback">
+            <summary>
+            Callback delegate from <see cref="T:LinqExtender.BucketItem"/>
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="T:LinqExtender.FormatProvider.IFormatProvider">
+            <summary>
+            Format provider interface generating literals.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.FormatProvider.IFormatProvider.Initialize(LinqExtender.Interfaces.IBucket)">
+            <summary>
+            Initialzes the format provider.
+            </summary>
+            <param name="bucket"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.FormatProvider.IFormatProvider.SelectItemFormat">
+            <summary>
+            Defines executing string format for SelectItem calls.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.FormatProvider.IFormatProvider.GetItemFormat">
+            <summary>
+            Defines executing string format for Get calls.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.FormatProvider.IFormatProvider.AddItemFormat">
+            <summary>
+            Defines executing string format for Adding new items.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.FormatProvider.IFormatProvider.UpdateItemFormat">
+            <summary>
+            Defines executing string format for updating items.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.FormatProvider.IFormatProvider.RemoveItemFormat">
+            <summary>
+            Defines executing string format for removing items.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:LinqExtender.FormatProvider.TSqlFormatProvider">
+            <summary>
+            TSQL format provider.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.FormatProvider.TSqlFormatProvider.Initialize(LinqExtender.Interfaces.IBucket)">
+            <summary>
+            Creates a new format provider for <see cref="T:LinqExtender.Bucket"/> object.
+            </summary>
+            <param name="bucket"></param>
+        </member>
+        <member name="M:LinqExtender.FormatProvider.TSqlFormatProvider.SelectItemFormat">
+            <summary>
+            Defines the format for select statement.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.FormatProvider.TSqlFormatProvider.GetItemFormat">
+            <summary>
+            Select item format.`
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.FormatProvider.TSqlFormatProvider.AddItemFormat">
+            <summary>
+            Defines executing string format for Adding new items.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.FormatProvider.TSqlFormatProvider.UpdateItemFormat">
+            <summary>
+            Defines executing string format for updating items.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.FormatProvider.TSqlFormatProvider.RemoveItemFormat">
+            <summary>
+            Defines executing string format for removing items.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.FormatProvider.TSqlFormatProvider.DefineEntity">
+            <summary>
+            Defines the entity name.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.FormatProvider.TSqlFormatProvider.DefineFields">
+            <summary>
+            Defines entity fields.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.FormatProvider.TSqlFormatProvider.DefineNonUniqueFields">
+            <summary>
+            Defines non unique fields.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.FormatProvider.TSqlFormatProvider.DefineTobeInsertedValues">
+            <summary>
+            Builds to be inserted values format.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.FormatProvider.TSqlFormatProvider.DefineSkip">
+            <summary>
+            Defines skip string.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.FormatProvider.TSqlFormatProvider.DefineUpdateItems">
+            <summary>
+            Format for updating items.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.FormatProvider.TSqlFormatProvider.DefineUniqueWhere">
+            <summary>
+            Defines liternal from unique items.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.FormatProvider.TSqlFormatProvider.DefineUniqueItem">
+            <summary>
+            Defines the unique item.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.FormatProvider.TSqlFormatProvider.DefinePageLength">
+            <summary>
+            Defines page length.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.FormatProvider.TSqlFormatProvider.DefineWhere">
+            <summary>To
+            Defines where clause.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.FormatProvider.TSqlFormatProvider.DefineOrderBy">
+            <summary>
+            Defines order by query.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.FormatProvider.TSqlFormatProvider.GetValue(System.Object)">
+            <summary>
+            overrride it to format value you want.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="P:LinqExtender.FormatProvider.TSqlFormatProvider.Operators">
+            <summary>
+            Operator mappings
+            </summary>
+        </member>
+        <member name="P:LinqExtender.FormatProvider.TSqlFormatProvider.RelationalOperators">
+            <summary>
+            Releationship operator mappings.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Interfaces.IQueryObject">
+            <summary>
+            Interface for making an object queryable.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Interfaces.IQueryObjectImpl">
+            <summary>
+            Internal class for query object.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Interfaces.IQueryObjectImpl.FillBucket(LinqExtender.Bucket)">
+            <summary>
+            fills up the bucket from current object.
+            </summary>
+            <param name="bucket"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Interfaces.IQueryObjectImpl.FillObject(LinqExtender.Bucket)">
+            <summary>
+             fills the object from working bucket.
+            </summary>
+            <param name="source"></param>
+        </member>
+        <member name="M:LinqExtender.Interfaces.IQueryObjectImpl.FillProperty(System.String,System.Object,System.Type)">
+            <summary>
+            fills up the property of current object.
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+            <param name="returnType"></param>
+        </member>
+        <member name="P:LinqExtender.Interfaces.IQueryObjectImpl.IsDeleted">
+            <summary>
+            Get/Sets if an item is delted from the collection.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Interfaces.IQueryObjectImpl.IsNewlyAdded">
+            <summary>
+            Gets/Sets if an item is newly added to the collection. 
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Interfaces.IQueryObjectImpl.IsAltered">
+            <summary>
+            Gets/Sets if an item is updated. 
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Properties.Messages">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Properties.Messages.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Properties.Messages.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Properties.Messages.BucketTranslationFailed">
+            <summary>
+              Looks up a localized string similar to Bucket translation failed during {0} call..
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Properties.Messages.DirectJoinNotSupported">
+            <summary>
+              Looks up a localized string similar to Direct join expression is not supported yet..
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Properties.Messages.EmptyCollection">
+            <summary>
+              Looks up a localized string similar to There is no item in the collection..
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Properties.Messages.MultipleElementInColleciton">
+            <summary>
+              Looks up a localized string similar to There are multiple element in the collection, use First instead..
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Properties.Messages.MustbeOneUniqueField">
+            <summary>
+              Looks up a localized string similar to There can only be one unique property under {0}..
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Properties.Messages.MustContainValidSettingsXml">
+            <summary>
+              Looks up a localized string similar to Must contains valid settings information to process..
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Properties.Messages.MustDefineAContainer">
+            <summary>
+              Looks up a localized string similar to Must deifne a cotnainer and behavior of each node..
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Properties.Messages.MustHaveADefaultConstructor">
+            <summary>
+              Looks up a localized string similar to Entity class must have a default constructor..
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Properties.Messages.MustProvideACallback">
+            <summary>
+              Looks up a localized string similar to Must provide a valid callback method..
+            </summary>
+        </member>
+        <member name="T:LinqExtender.ProviderException">
+            <summary>
+            Custom extender expection class.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.ProviderException.#ctor(System.String,System.Exception)">
+            <summary>
+            Parametrized constructor for the expection.
+            </summary>
+            <param name="message"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="M:LinqExtender.ProviderException.#ctor(System.String)">
+            <summary>
+            Defautl constructor for the expection.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:LinqExtender.Interfaces.IModify">
+            <summary>
+            Generic inteface for modifying collecion.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Interfaces.IModify.Clear">
+            <summary>
+            Clears out items from collection.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Interfaces.IModify.Sort">
+            <summary>
+            Sorts the collection, using the orderby clause used in query.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Interfaces.IModify`1">
+            <summary>
+            Non generic interface for modifying colleciton items.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:LinqExtender.Interfaces.IModify`1.Remove(`0)">
+            <summary>
+            Marks an item to be removed.
+            </summary>
+            <param name="value">query object.</param>
+        </member>
+        <member name="M:LinqExtender.Interfaces.IModify`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Addes a range of items to the collection.
+            </summary>
+            <param name="items"></param>
+        </member>
+        <member name="M:LinqExtender.Interfaces.IModify`1.AddRange(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+            <summary>
+            Adds items to the main collection and does a sort operation if any orderby is used in query.
+            </summary>
+            <param name="items"></param>
+            <param name="inMemorySort"></param>
+        </member>
+        <member name="M:LinqExtender.Interfaces.IModify`1.Add(`0)">
+            <summary>
+            Adds a new item to the collection
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="P:LinqExtender.Interfaces.IModify`1.Item(System.Int32)">
+            <summary>
+            Gets/Sets a query object implementation for an index.
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LinqExtender.TreeNode">
+            <summary>
+            Represents the query conditions in a tree logical tree form.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.TreeNode.Clone">
+            <summary>
+            Clones the tree node.
+            </summary>
+            <returns>clonned <see cref="T:LinqExtender.TreeNode"/></returns>
+        </member>
+        <member name="P:LinqExtender.TreeNode.Id">
+            <summary>
+            Id of the current node.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.TreeNode.ParentId">
+            <summary>
+            parent Id of the current node.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.TreeNode.Nodes">
+            <summary>
+            list of nodes under each expression.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.TreeNode.Left">
+            <summary>
+            left leaf of the current root, can contain bucketItem or a CurrentNode
+            </summary>
+        </member>
+        <member name="P:LinqExtender.TreeNode.Right">
+            <summary>
+            right leaf of the current root, can contain bucketItem or a CurrentNode
+            </summary>
+        </member>
+        <member name="P:LinqExtender.TreeNode.Root">
+            <summary>
+             Root which the left and right item follows.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.TreeNode.Node">
+            <summary>
+            Defines a tree node.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.TreeNode.Node.Value">
+            <summary>
+            Gets a value for the tree node.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.QueryItemComparer`1">
+            <summary>
+            Compares two query object
+            </summary>
+            <typeparam name="T">QueryObject</typeparam>
+        </member>
+        <member name="M:LinqExtender.QueryItemComparer`1.#ctor(System.String,System.Boolean)">
+            <summary>
+            Creates a new instance of the <see cref="T:LinqExtender.QueryItemComparer`1"/> with specific order by field name and soring.
+            </summary>
+            <param name="orderByField"></param>
+            <param name="asc"></param>
+        </member>
+        <member name="M:LinqExtender.ProjectedQuery`2.#ctor(System.Linq.Expressions.Expression,LinqExtender.Query{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:LinqExtender.ProjectedQuery`2"/> class.
+            </summary>
+            <param name="expression">The expression.</param>
+            <param name="query">The query.</param>
+        </member>
+        <member name="M:LinqExtender.ProjectedQuery`2.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="P:LinqExtender.ProjectedQuery`2.ElementType">
+            <summary>
+            Gets the type of the element(s) that are returned when the expression tree associated with this instance of <see cref="T:System.Linq.IQueryable"/> is executed.
+            </summary>
+            <value></value>
+            <returns>A <see cref="T:System.Type"/> that represents the type of the element(s) that are returned when the expression tree associated with this object is executed.</returns>
+        </member>
+        <member name="P:LinqExtender.ProjectedQuery`2.Expression">
+            <summary>
+            Gets the expression tree that is associated with the instance of <see cref="T:System.Linq.IQueryable"/>.
+            </summary>
+            <value></value>
+            <returns>The <see cref="T:System.Linq.Expressions.Expression"/> that is associated with this instance of <see cref="T:System.Linq.IQueryable"/>.</returns>
+        </member>
+        <member name="P:LinqExtender.ProjectedQuery`2.Provider">
+            <summary>
+            Gets the query provider that is associated with this data source.
+            </summary>
+            <value></value>
+            <returns>The <see cref="T:System.Linq.IQueryProvider"/> that is associated with this data source.</returns>
+        </member>
+        <member name="T:LinqExtender.QueryObject">
+            <summary>
+            Defines a query object.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.QueryObject.ReferringObject">
+            <summary>
+            Contains the reference to the current query object.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.QueryObject`1">
+            <summary>
+            Query object implemenatation.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:LinqExtender.QueryObject`1.#ctor(`0)">
+            <summary>
+            Creates a new instance of the <see cref="T:LinqExtender.QueryObject`1"/> for its underlying object.
+            </summary>
+            <param name="baseObject"></param>
+        </member>
+        <member name="M:LinqExtender.QueryObject`1.Dispose">
+            <summary>
+            Disposes the query object.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.QueryObject`1.LinqExtender#Interfaces#IVersionItem#Commit">
+            <summary>
+            updates the cached object with update object
+            </summary>
+        </member>
+        <member name="M:LinqExtender.QueryObject`1.LinqExtender#Interfaces#IVersionItem#Revert">
+            <summary>
+            converts the current object to cachedObject.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.QueryObject`1.CopyObjectTo(System.Object,System.Object[])">
+            <summary>
+            Copies the source object to one or more destinaton object.
+            </summary>
+            <param name="sourceObject">single object to be copied.</param>
+            <param name="targets">array of objects</param>
+        </member>
+        <member name="M:LinqExtender.QueryObject`1.FillBucket(LinqExtender.Bucket)">
+            <summary>
+            Takes bucket reference and fills it up with new values.
+            </summary>
+            <param name="bucket"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.QueryObject`1.FillProperty(System.String,System.Object,System.Type)">
+            <summary>
+            Fill value for a property name.
+            </summary>
+            <param name="name">Name of the property, accepts original property or Modified by OriginalFieldNameAttribute</param>
+            <param name="value">the value of the property , retrived from property get accessor.</param>
+            <param name="returnType">Return type of the underlying property.</param>
+        </member>
+        <member name="M:LinqExtender.QueryObject`1.FillObject(LinqExtender.Bucket)">
+            <summary>
+            Fills object from its underlying bucket.
+            </summary>
+            <param name="source"></param>
+        </member>
+        <member name="P:LinqExtender.QueryObject`1.IsDeleted">
+            <summary>
+            determines if an item is removed from collection.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.QueryObject`1.IsAltered">
+            <summary>
+            deternmines if the object is altered , thus call UpdateItemFormat.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.QueryObject`1.IsNewlyAdded">
+            <summary>
+            determines if an item is newly added in the collection.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.QueryObject`1.ReferringObject">
+            <summary>
+            Gets/Sets the underlying ref object for the query object implementation.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.RelationType">
+            <summary>
+            Represents the relational query operator equavalent.
+            </summary>
+        </member>
+        <member name="F:LinqExtender.RelationType.Equal">
+            <summary>
+            Eqavalent of "=="
+            </summary>
+        </member>
+        <member name="F:LinqExtender.RelationType.GreaterThan">
+            <summary>
+            Eqavalent of ">"
+            </summary>
+        </member>
+        <member name="F:LinqExtender.RelationType.LessThan">
+            <summary>
+            Eqavalent of <![CDATA[ < ]]>
+            </summary>
+        </member>
+        <member name="F:LinqExtender.RelationType.GreaterThanEqual">
+            <summary>
+            Eqavalent of ">="
+            </summary>
+        </member>
+        <member name="F:LinqExtender.RelationType.LessThanEqual">
+            <summary>
+            Eqavalent of <![CDATA[<=]]>
+            </summary>
+        </member>
+        <member name="F:LinqExtender.RelationType.NotEqual">
+            <summary>
+            Eqavalent of "!="
+            </summary>
+        </member>
+        <member name="F:LinqExtender.RelationType.NotApplicable">
+            <summary>
+            Default value for first where clause item
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Query`1">
+            <summary>
+             Entry class for LINQ provider. Containter of the virtual methods that will be invoked on select, intsert, update, remove or get calls.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.Collection.QueryCollection`1">
+            <summary>
+            Contains query objects.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Collection.QueryCollection`1.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:LinqExtender.Collection.QueryCollection`1"/> class and initialized teh classgenerator.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Collection.QueryCollection`1.Any">
+            <summary>
+            returnts true if the sequece contains any element.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Collection.QueryCollection`1.Single">
+            <summary>
+            returns only element of the sequece , throws exception if there is no element in 
+            the sequece
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Collection.QueryCollection`1.SingleOrDefault">
+            <summary>
+            Returns a single item or default value if empty.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Collection.QueryCollection`1.Count">
+            <summary>
+            returns the count of the sequence
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Collection.QueryCollection`1.First">
+            <summary>
+            returns the first item of the sequence
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Collection.QueryCollection`1.FirstOrDefault">
+            <summary>
+            Returns first item or default value if empty.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Collection.QueryCollection`1.Last">
+            <summary>
+            returns the last item of the sequence.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Collection.QueryCollection`1.LastOrDefault">
+            <summary>
+            Returns the last item or a default value.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Collection.QueryCollection`1.Remove(`0)">
+            <summary>
+            Marks a item to be removed from the colleciton.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:LinqExtender.Collection.QueryCollection`1.Clear">
+            <summary>
+            Clears out the collection.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Collection.QueryCollection`1.Add(`0)">
+            <summary>
+            Adds a new item to the collection.
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:LinqExtender.Collection.QueryCollection`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Adds a range of items to the collection.
+            </summary>
+            <param name="items"></param>
+        </member>
+        <member name="M:LinqExtender.Collection.QueryCollection`1.AddRange(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+            <summary>
+            Adds items to the main collection and does a sort operation if any orderby is used in query.
+            </summary>
+            <param name="items"></param>
+            <param name="inMemorySort"></param>
+        </member>
+        <member name="M:LinqExtender.Collection.QueryCollection`1.Sort">
+            <summary>
+            Sorts the collection, using the orderby clause used in query.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Collection.QueryCollection`1.Sort(System.Collections.Generic.IComparer{LinqExtender.QueryObject{`0}})">
+            <summary>
+            Sorts the collection with the provided comparer.
+            </summary>
+            <param name="comparer"></param>
+        </member>
+        <member name="F:LinqExtender.Collection.QueryCollection`1.classElement">
+            <summary>
+            Defines the class settings to be injected in queryobject.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Collection.QueryCollection`1.Item(System.Int32)">
+            <summary>
+            Gets/Sets a query object implementation for an index.
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="P:LinqExtender.Collection.QueryCollection`1.Items">
+            <summary>
+            Gets a list of query item.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Collection.QueryCollection`1.QueryObjects">
+            <summary>
+            Gets a list of query object implementation.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Query`1.GetEnumerator">
+            <summary>
+            Executes the query and gets a iterator for it.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Query`1.CreateQuery``1(System.Linq.Expressions.Expression)">
+            <summary>
+            Creates the query for type and current expression.
+            </summary>
+            <typeparam name="TS">currenty type passed by frameowrk</typeparam>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Query`1.CreateQuery(System.Linq.Expressions.Expression)">
+            <summary>
+            Creates the query for current expression.
+            </summary>
+            <param name="expression"></param>
+            <returns>ref to IQueryable instance</returns>
+        </member>
+        <member name="M:LinqExtender.Query`1.Execute``1(System.Linq.Expressions.Expression)">
+            <summary>
+            Executes the query for current type and expression
+            </summary>
+            <typeparam name="TResult">Current type</typeparam>
+            <param name="expression"></param>
+            <returns>typed result</returns>
+        </member>
+        <member name="M:LinqExtender.Query`1.Execute(System.Linq.Expressions.Expression)">
+            <summary>
+            Executes the query for current expression.
+            </summary>
+            <param name="expression"></param>
+            <returns>object/collection</returns>
+        </member>
+        <member name="M:LinqExtender.Query`1.Sort">
+            <summary>
+            internally tries to sort , if the query contains orderby statement.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Query`1.AddRange(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+            <summary>
+            Adds list of items to the collection , optionally calls in memory sort. Used in Query<typeparamref name="T"/>.SelectItem
+            </summary>
+            <param name="items">collection</param>
+            <param name="inMemorySort">true/false</param>
+        </member>
+        <member name="M:LinqExtender.Query`1.AddItem(LinqExtender.Interfaces.IBucket)">
+            <summary>
+            Invoked after SubmitChanges(), if there is new item in the colleciton.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Query`1.RemoveItem(LinqExtender.Interfaces.IBucket)">
+            <summary>
+            Invoked after SubmitChanges(), if there are delted items in the collection.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Query`1.UpdateItem(LinqExtender.Interfaces.IBucket)">
+            <summary>
+            Invoked after SubmitChanges(), if any of the object value is altered.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Query`1.GetItem(LinqExtender.Interfaces.IBucket)">
+            <summary>
+            gets the single item for unique properties.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.Query`1.SelectItem(LinqExtender.Interfaces.IBucket,LinqExtender.Interfaces.IModify{`0})">
+            <summary>
+            Called by the extender for select queries.
+            </summary>
+            <param name="bucket">bucekt interface.</param>
+            <param name="items"></param>
+        </member>
+        <member name="M:LinqExtender.Query`1.SubmitChanges">
+            <summary>
+             When called, it invokes the appropiate Query<typeparamref name="T"/> method to finalize the collection changes.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Query`1.BuildSettingElement(System.String)">
+            <summary>
+            Sets <see cref="F:LinqExtender.Collection.QueryCollection`1.classElement"/> from provided config and <typeparamref name="T"/>
+            </summary>
+        </member>
+        <member name="M:LinqExtender.Query`1.GetClassElement``1(System.String)">
+            <summary>
+            Gets the class element and merges it with All type.
+            </summary>
+            <typeparam name="T1"></typeparam>
+            <returns><see cref="F:LinqExtender.Collection.QueryCollection`1.classElement"/></returns>
+        </member>
+        <member name="M:LinqExtender.Query`1.SuperPose(LinqExtender.Configuration.Serialization.PropertyElement,LinqExtender.Configuration.Serialization.PropertyElement)">
+            <summary>
+            Superposes one proeprty element to antoher.
+            </summary>
+            <param name="target"><see cref="T:LinqExtender.Configuration.Serialization.PropertyElement"/></param>
+            <param name="source"><see cref="T:LinqExtender.Configuration.Serialization.PropertyElement"/></param>
+        </member>
+        <member name="P:LinqExtender.Query`1.Item(System.Int32)">
+            <summary>
+            Gets the collection item for an index
+            </summary>
+            <param name="index">index</param>
+            <returns><typeparamref name="T"/></returns>
+        </member>
+        <member name="P:LinqExtender.Query`1.ElementType">
+            <summary>
+            Gets element type for the expression.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Query`1.Expression">
+            <summary>
+            Gets the expression tree.
+            </summary>
+        </member>
+        <member name="P:LinqExtender.Query`1.Provider">
+            <summary>
+            Gets a query provider the LINQ query.
+            </summary>
+        </member>
+        <member name="T:LinqExtender.QueryExtension">
+            <summary>
+            Contains helper extensions for various query operations.
+            </summary>
+        </member>
+        <member name="M:LinqExtender.QueryExtension.GetUnaryExpressionFromMethodCall(System.Linq.Expressions.Expression)">
+            <summary>
+            Tries to get <see cref="T:System.Linq.Expressions.UnaryExpression"/> from <see cref="T:System.Linq.Expressions.MethodCallExpression"/>
+            </summary>
+            <param name="expression"><see cref="T:System.Linq.Expressions.Expression"/></param>
+            <returns><see cref="T:System.Linq.Expressions.UnaryExpression"/></returns>
+        </member>
+        <member name="M:LinqExtender.QueryExtension.Combine(System.Collections.Generic.IList{LinqExtender.BucketItem.QueryCondition},System.Type)">
+            <summary>
+            tries to combine the values for a give a type . Ex User defined clasee
+            and its properties.
+            </summary>
+            <param name="list"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.QueryExtension.CopyRecursive(System.Object,System.Object)">
+            <summary>
+            recursively copies object properties to destination.
+            </summary>
+            <param name="source"></param>
+            <param name="destination"></param>
+        </member>
+        <member name="M:LinqExtender.QueryExtension.GetValueFromExpression(System.Linq.Expressions.Expression)">
+            <summary>
+            Tries to get a value from current expression.
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.QueryExtension.InvokeMethod(System.String,System.Type,System.Object)">
+            <summary>
+            Invokes a method from an object.
+            </summary>
+            <param name="methodName"></param>
+            <param name="itemType"></param>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.QueryExtension.GetPropertyName(System.Reflection.PropertyInfo,System.Object)">
+            <summary>
+            Gets a property name for <see cref="T:System.Reflection.PropertyInfo"/> including <see cref="T:LinqExtender.Attributes.OriginalFieldNameAttribute"/>
+            </summary>
+            <param name="info"></param>
+            <param name="target">target query object.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.QueryExtension.ToPropertyElementDictionary(LinqExtender.Configuration.Serialization.PropertyElement[])">
+            <summary>
+            Converts the array to propery dictonary.
+            </summary>
+            <param name="elements"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LinqExtender.QueryExtension.GetMemberFromExpression``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            Gets <see cref="T:System.Reflection.MemberInfo"/> from <see cref="T:System.Linq.Expressions.Expression`1"/>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="expression"></param>
+            <returns><see cref="T:System.Reflection.MemberInfo"/></returns>
+        </member>
+    </members>
+</doc>
