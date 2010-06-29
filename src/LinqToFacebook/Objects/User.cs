@@ -1,3 +1,5 @@
+using LinqExtender.Interfaces;
+
 namespace LinqToFacebook
 {
     /// <summary>
@@ -6,7 +8,7 @@ namespace LinqToFacebook
     /// <remarks>
     /// http://developers.facebook.com/docs/reference/api/user
     /// </remarks>
-    public class FacebookUser : FacebookObject
+    public class FacebookUser : FacebookObject, IQueryObject
     {
         /// <summary>
         /// The user's first name. (first_name)
