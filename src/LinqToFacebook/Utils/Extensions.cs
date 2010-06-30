@@ -24,6 +24,17 @@ namespace LinqToFacebook
             return sb.ToString();
         }
 
+        internal static string AttachPostDataToUri(this string uri, IDictionary<string, string> postData)
+        {
+            var newUri = new StringBuilder();
+            newUri.Append(newUri);
+
+            if (postData != null)
+                newUri.AppendFormat("?{0}", postData.ToPostString());
+
+            return newUri.ToString();
+        }
+
         internal static string UrlEncode(this string stringToEncode)
         {
             return Uri.EscapeDataString(stringToEncode);
