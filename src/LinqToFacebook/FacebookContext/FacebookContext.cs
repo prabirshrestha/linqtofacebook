@@ -25,5 +25,11 @@ namespace LinqToFacebook
         {
             Settings = facebookSettings;
         }
+
+        private void AssertRequiresAccessToken()
+        {
+            if (string.IsNullOrEmpty(Settings.AccessToken))
+                throw new AccessTokenRequiredException();
+        }
     }
 }
