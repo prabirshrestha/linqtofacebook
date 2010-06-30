@@ -40,6 +40,11 @@ namespace LinqToFacebook
             return Uri.EscapeDataString(stringToEncode);
         }
 
+        internal static string GetFacebookID(this string jsonString)
+        {
+            return jsonString.ToJToken().Value<string>("id");
+        }
+
         internal static JToken ToJToken(this string jsonString)
         {
             using (var reader = new StringReader(jsonString))

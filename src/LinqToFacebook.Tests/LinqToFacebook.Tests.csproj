@@ -51,6 +51,7 @@
     <Compile Include="FacebookContext\GenericWebRequests\GetTests.cs" />
     <Compile Include="FacebookContext\Validations\ValidateWriteFeedParamsDummyAccessTokenTests.cs" />
     <Compile Include="FacebookContext\Validations\ValidateWriteFeedParamsNoAccessTokenTests.cs" />
+    <Compile Include="Helpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
