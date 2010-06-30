@@ -12,5 +12,6 @@ namespace LinqToFacebook
         public string ClientSecret { get; set; }
         public string RedirectUri { get; set; }
         public string UserAgent { get; set; }
+        public bool CompressHttp { get; set; }
     }
 }
