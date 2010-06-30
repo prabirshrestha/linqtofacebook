@@ -3,7 +3,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-namespace LinqToFacebook.Utils
+namespace LinqToFacebook
 {
     internal static class WebRequestHelpers
     {
@@ -45,7 +45,7 @@ namespace LinqToFacebook.Utils
             }
         }
 
-        internal static string Get(string uri, Dictionary<string, string> parameters, bool compressHttp, string userAgent)
+        internal static string Get(string uri, IDictionary<string, string> parameters, bool compressHttp, string userAgent)
         {
             return Get(uri.AttachPostDataToUri(parameters), compressHttp, userAgent);
         }
@@ -96,7 +96,7 @@ namespace LinqToFacebook.Utils
             }
         }
 
-        internal static string Post(string uri, Dictionary<string, string> parmeters, bool compressHttp, string userAgent)
+        internal static string Post(string uri, IDictionary<string, string> parmeters, bool compressHttp, string userAgent)
         {
             return Post(uri, parmeters.ToPostString(), compressHttp, userAgent);
         }

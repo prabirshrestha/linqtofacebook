@@ -16,7 +16,7 @@ namespace LinqToFacebook
             set { _facebookSettings = value; }
         }
 
-        private const string GraphUrl = "https://graph.facebook.com";
+        private const string GraphUrl = "https://graph.facebook.com/{0}";
 
         public FacebookContext()
         {

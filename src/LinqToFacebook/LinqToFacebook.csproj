@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\AccessTokenRequiredException.cs" />
+    <Compile Include="Exceptions\_FacebookExceptionParser.cs" />
     <Compile Include="Exceptions\_LinqToFacebookException.cs" />
     <Compile Include="FacebookContext\Feed.cs" />
     <Compile Include="FacebookContext\FacebookContext.cs" />
@@ -60,7 +61,9 @@
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\WebRequestHelpers.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="LinqToFacebook.cd" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

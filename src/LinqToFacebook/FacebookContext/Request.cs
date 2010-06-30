@@ -1,14 +1,31 @@
-using System;
-using System.IO;
-using System.Net;
-using System.Text;
-using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 
 namespace LinqToFacebook
 {
     public partial class FacebookContext
     {
-        
+        #region Synchronous Methods
+
+        public string Get(string path, IDictionary<string, string> parameters)
+        {
+            return WebRequestHelpers.Get(string.Format(GraphUrl, path), parameters, Settings.CompressHttp,
+                                         Settings.UserAgent);
+        }
+
+        public string Post(string path, IDictionary<string, string> parameters)
+        {
+            return WebRequestHelpers.Post(string.Format(GraphUrl, path), parameters, Settings.CompressHttp,
+                                          Settings.UserAgent);
+        }
+
+        #endregion
+
+        #region Asynchronous Methods
+
+        // todo async methods for get and post
+
+        #endregion
+
         //private static WebResponse RequestAsWebResponse(string requestUrl, string postString, bool compressHttp, bool useGet)
         //{ // http://facebooktoolkit.codeplex.com/SourceControl/changeset/view/51096#420763
         //    HttpWebRequest request;
