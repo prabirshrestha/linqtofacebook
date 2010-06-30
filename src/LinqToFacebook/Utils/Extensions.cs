@@ -10,7 +10,7 @@ namespace LinqToFacebook
     internal static class Extensions
     {
         internal static string ToPostString(this IDictionary<string, string> postData, bool urlEncode)
-        {
+        {   // don't urlencode when using get.
             var sb = new StringBuilder();
             foreach (string key in postData.Keys)
             {

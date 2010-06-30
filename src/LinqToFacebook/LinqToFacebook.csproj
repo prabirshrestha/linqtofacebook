@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\AccessTokenRequiredException.cs" />
+    <Compile Include="Exceptions\FacebookApiExceptions\FacebookApiException.cs" />
     <Compile Include="Exceptions\_FacebookExceptionParser.cs" />
     <Compile Include="Exceptions\_LinqToFacebookException.cs" />
     <Compile Include="FacebookContext\LinqExtenderStuffs.cs" />
