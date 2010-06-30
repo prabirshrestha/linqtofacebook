@@ -27,7 +27,7 @@ namespace LinqToFacebook
         internal static string AttachPostDataToUri(this string uri, IDictionary<string, string> postData)
         {
             var newUri = new StringBuilder();
-            newUri.Append(newUri);
+            newUri.Append(uri);
 
             if (postData != null)
                 newUri.AppendFormat("?{0}", postData.ToPostString());
