@@ -9,7 +9,7 @@ namespace LinqToFacebook.Tests.FacebookContextTests.GenericWebRequests
 
         public GetTests()
         {
-            _fbContext = new FacebookContext();
+            _fbContext = new FacebookContext(new FacebookSettings { AccessToken = Helpers.AccessToken });
         }
 
         [Fact]

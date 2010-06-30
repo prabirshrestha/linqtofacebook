@@ -47,7 +47,7 @@ namespace LinqToFacebook
 
         internal static string Get(string uri, IDictionary<string, string> parameters, bool compressHttp, string userAgent)
         {
-            return Get(uri.AttachPostDataToUri(parameters), compressHttp, userAgent);
+            return Get(uri.AttachPostDataToUri(parameters, false), compressHttp, userAgent);
         }
 
         #endregion
@@ -98,7 +98,7 @@ namespace LinqToFacebook
 
         internal static string Post(string uri, IDictionary<string, string> parmeters, bool compressHttp, string userAgent)
         {
-            return Post(uri, parmeters.ToPostString(), compressHttp, userAgent);
+            return Post(uri, parmeters.ToPostString(true), compressHttp, userAgent);
         }
 
         #endregion

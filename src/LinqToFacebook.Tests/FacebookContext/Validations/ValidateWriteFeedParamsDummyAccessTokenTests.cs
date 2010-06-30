@@ -17,7 +17,7 @@ namespace LinqToFacebook.Tests.FacebookContextTests.Validations
         {
             // Arrange
             string path;
-            IDictionary<string,string> postData;
+            IDictionary<string, string> postData;
 
             // Act
             _facebookContext.ValidateWriteFeedParams("dummy message", null, null, null, null, null, out path,
@@ -43,7 +43,7 @@ namespace LinqToFacebook.Tests.FacebookContextTests.Validations
                                                      out path, out postData);
 
             // Assert
-            Assert.Equal(expectedPostData, postData.ToPostString());
+            Assert.Equal(expectedPostData, postData.ToPostString(true));
         }
     }
 }

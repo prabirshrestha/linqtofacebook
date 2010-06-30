@@ -9,7 +9,7 @@ namespace LinqToFacebook
 {
     internal static class Extensions
     {
-        internal static string ToPostString(this IDictionary<string, string> postData)
+        internal static string ToPostString(this IDictionary<string, string> postData, bool urlEncode)
         {
             var sb = new StringBuilder();
             foreach (string key in postData.Keys)
@@ -17,20 +17,20 @@ namespace LinqToFacebook
                 if (sb.Length > 0)
                     sb.Append('&');
 
-                sb.Append(key.UrlEncode());
+                sb.Append(urlEncode ? key.UrlEncode() : key);
                 sb.Append('=');
-                sb.Append(postData[key].UrlEncode());
+                sb.Append(urlEncode ? postData[key].UrlEncode() : postData[key]);
             }
             return sb.ToString();
         }
 
-        internal static string AttachPostDataToUri(this string uri, IDictionary<string, string> postData)
+        internal static string AttachPostDataToUri(this string uri, IDictionary<string, string> postData, bool urlEncode)
         {
             var newUri = new StringBuilder();
             newUri.Append(uri);
 
             if (postData != null)
-                newUri.AppendFormat("?{0}", postData.ToPostString());
+                newUri.AppendFormat("?{0}", postData.ToPostString(urlEncode));
 
             return newUri.ToString();
         }
