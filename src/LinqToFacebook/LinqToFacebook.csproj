@@ -68,6 +68,9 @@
     <Compile Include="Utils\WebRequestHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="facebook.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="LinqToFacebook.cd" />
   </ItemGroup>
   <ItemGroup />
