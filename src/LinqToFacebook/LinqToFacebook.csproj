@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\AccessTokenRequiredException.cs" />
+    <Compile Include="Exceptions\_LinqToFacebookException.cs" />
+    <Compile Include="FacebookContext\Feed.cs" />
     <Compile Include="FacebookContext\FacebookContext.cs" />
     <Compile Include="FacebookContext\Request.cs" />
     <Compile Include="FacebookSettings.cs" />

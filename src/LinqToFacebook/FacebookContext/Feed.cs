@@ -1,23 +1,60 @@
 using System;
-using System.IO;
-using System.Net;
-using System.Text;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 
 namespace LinqToFacebook
 {
     public partial class FacebookContext
     {
-        public string WriteFeed(string message, string link, string name, string caption, string description)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="link"></param>
+        /// <param name="linkName"></param>
+        /// <param name="linkCaption"></param>
+        /// <param name="linkDescription"></param>
+        /// <param name="pictureUrl"></param>
+        /// <returns></returns>
+        public string WriteFeed(string message, string pictureUrl, string link, string linkName, string linkCaption, string linkDescription)
         {
-            AssertRequiresAccessToken();
+            string requestUrl, postData;
+            ValidateWriteFeedParams(message, pictureUrl, link, linkName, linkCaption, linkDescription, out requestUrl,
+                                    out postData);
             return null;
         }
 
-        public string WriteToWall(string message, string link, string name, string caption, string description)
+        /// <summary>
+        /// Helpers function to Validate parameters before writing the feed
+        /// </summary>
+        /// <remarks>
+        /// This method was created seperately in order to have unit testing without hitting the fb site.
+        /// </remarks>
+        internal void ValidateWriteFeedParams(string message, string pictureUrl, string link, string linkName, string linkCaption, string linkDescription,
+            out string requestUrl, out string postData)
         {
-            return WriteFeed(message, link, name, caption, description);
+            if (string.IsNullOrEmpty(message))
+                throw new ArgumentNullException("message");
+
+            AssertRequiresAccessToken();
+
+            requestUrl = string.Format("{0}{1}?access_token={2}", GraphUrl, "/me/feed", Settings.AccessToken);
+            var postDataParams = new Dictionary<string, string> { { "message", message } };
+
+            if (!string.IsNullOrEmpty(pictureUrl))
+                postDataParams.Add("picture", pictureUrl);
+
+            if (!string.IsNullOrEmpty(link))
+            {
+                postDataParams.Add("link", link);
+                if (!string.IsNullOrEmpty(linkName))
+                    postDataParams.Add("name", linkName);
+                if (!string.IsNullOrEmpty(linkCaption))
+                    postDataParams.Add("caption", linkCaption);
+                if (!string.IsNullOrEmpty(linkDescription))
+                    postDataParams.Add("description", linkDescription);
+            }
+
+            postData = postDataParams.ToString();
         }
     }
 }
