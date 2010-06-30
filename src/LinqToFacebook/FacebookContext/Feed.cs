@@ -14,7 +14,7 @@ namespace LinqToFacebook
         /// <param name="linkCaption"></param>
         /// <param name="linkDescription"></param>
         /// <param name="pictureUrl"></param>
-        /// <returns></returns>
+        /// <returns>Returns the id of the feed (post).</returns>
         public string WriteFeed(string message, string pictureUrl, string link, string linkName, string linkCaption, string linkDescription)
         {
             string path;
