@@ -63,7 +63,7 @@ namespace LinqToFacebook
                     postDataParams.Add("description", linkDescription);
             }
 
-            postData = postDataParams.ToString();
+            postData = postDataParams.ToPostString();
 
             AssertRequiresAccessToken();
             requestUrl = string.Format("{0}{1}?access_token={2}", GraphUrl, "/me/feed", Settings.AccessToken);

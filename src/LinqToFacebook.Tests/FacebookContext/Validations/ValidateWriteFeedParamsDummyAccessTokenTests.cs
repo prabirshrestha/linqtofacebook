@@ -1,4 +1,5 @@
 using Xunit;
+using Xunit.Extensions;
 
 namespace LinqToFacebook.Tests.FacebookContextTests.Validations
 {
@@ -24,6 +25,24 @@ namespace LinqToFacebook.Tests.FacebookContextTests.Validations
             // Assert
             Assert.Equal("https://graph.facebook.com/me/feed?access_token=" + _facebookContext.Settings.AccessToken,
                          requestUrl);
+        }
+
+        [Theory]
+        [InlineData("message", null, null, null, null, null, "message=message")]
+        [InlineData("testing new message", null, null, null, null, null, "message=testing%20new%20message")]
+        [InlineData("testing new message", null, "www.google.com", null, null, null, "message=testing%20new%20message&link=www.google.com")]
+        public void PostData_Tests(string message, string pictureUrl, string link, string linkName, string linkCaption, string linkDescription, string expectedPostData)
+        {
+            // Arrange
+            string requestUrl;
+            string postData;
+
+            // Act
+            _facebookContext.ValidateWriteFeedParams(message, pictureUrl, link, linkName, linkCaption, linkDescription,
+                                                     out requestUrl, out postData);
+
+            // Assert
+            Assert.Equal(expectedPostData, postData);
         }
     }
 }
