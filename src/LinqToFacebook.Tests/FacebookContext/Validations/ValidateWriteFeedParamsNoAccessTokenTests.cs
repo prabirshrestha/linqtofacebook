@@ -15,13 +15,13 @@ namespace LinqToFacebook.Tests.FacebookContextTests.Validations
         public void ValidateWriteFeedParamsThrowsArgumentNullExceptionWhenMessageIsNull()
         {
             // Arrange
-            string requestUrl;
+            string path;
             string postData;
 
             // Act/Arrage
             Assert.Throws<ArgumentNullException>(
                 () =>
-                _facebookContext.ValidateWriteFeedParams(null, null, null, null, null, null, out requestUrl,
+                _facebookContext.ValidateWriteFeedParams(null, null, null, null, null, null, out path,
                                                          out postData));
         }
 
@@ -29,13 +29,13 @@ namespace LinqToFacebook.Tests.FacebookContextTests.Validations
         public void ValidateWriteFeedParamsThrowsAccessTokenRequiredExceptionWhenAccesstoeknIsNotPresent()
         {
             // Arrange
-            string requestUrl;
+            string path;
             string postData;
 
             // Act/Arrage
             Assert.Throws<AccessTokenRequiredException>(
                 () =>
-                _facebookContext.ValidateWriteFeedParams("dummy message", null, null, null, null, null, out requestUrl,
+                _facebookContext.ValidateWriteFeedParams("dummy message", null, null, null, null, null, out path,
                                                          out postData));
         }
 
@@ -43,42 +43,42 @@ namespace LinqToFacebook.Tests.FacebookContextTests.Validations
         public void LinkIsNotSpecified_But_LinkNameIsSpecified()
         {
             // Arrange
-            string requestUrl;
+            string path;
             string postData;
 
             // Act/Arrage
             Assert.Throws<ArgumentException>(
                 () =>
                 _facebookContext.ValidateWriteFeedParams("dummy message", null, null, "dummy link name", null, null,
-                                                         out requestUrl, out postData));
+                                                         out path, out postData));
         }
 
         [Fact]
         public void LinkIsNotSpecified_But_LinkCaptionIsSpecified()
         {
             // Arrange
-            string requestUrl;
+            string path;
             string postData;
 
             // Act/Arrage
             Assert.Throws<ArgumentException>(
                 () =>
                 _facebookContext.ValidateWriteFeedParams("dummy message", null, null, null, "dummy link caption", null,
-                                                         out requestUrl, out postData));
+                                                         out path, out postData));
         }
 
         [Fact]
         public void LinkIsNotSpecified_But_LinkDescriptionIsSpecified()
         {
             // Arrange
-            string requestUrl;
+            string path;
             string postData;
 
             // Act/Arrage
             Assert.Throws<ArgumentException>(
                 () =>
                 _facebookContext.ValidateWriteFeedParams("dummy message", null, null, null, null,
-                                                         "dummy link description", out requestUrl, out postData));
+                                                         "dummy link description", out path, out postData));
         }
     }
 }

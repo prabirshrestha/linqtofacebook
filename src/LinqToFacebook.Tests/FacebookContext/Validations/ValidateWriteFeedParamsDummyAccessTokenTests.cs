@@ -15,16 +15,15 @@ namespace LinqToFacebook.Tests.FacebookContextTests.Validations
         public void RequestUrl_Tests()
         {
             // Arrange
-            string requestUrl;
+            string path;
             string postData;
 
             // Act
-            _facebookContext.ValidateWriteFeedParams("dummy message", null, null, null, null, null, out requestUrl,
+            _facebookContext.ValidateWriteFeedParams("dummy message", null, null, null, null, null, out path,
                                                      out postData);
 
             // Assert
-            Assert.Equal("https://graph.facebook.com/me/feed?access_token=" + _facebookContext.Settings.AccessToken,
-                         requestUrl);
+            Assert.Equal("me/feed?access_token=" + _facebookContext.Settings.AccessToken, path);
         }
 
         [Theory]
@@ -35,12 +34,12 @@ namespace LinqToFacebook.Tests.FacebookContextTests.Validations
         public void PostData_Tests(string message, string pictureUrl, string link, string linkName, string linkCaption, string linkDescription, string expectedPostData)
         {
             // Arrange
-            string requestUrl;
+            string path;
             string postData;
 
             // Act
             _facebookContext.ValidateWriteFeedParams(message, pictureUrl, link, linkName, linkCaption, linkDescription,
-                                                     out requestUrl, out postData);
+                                                     out path, out postData);
 
             // Assert
             Assert.Equal(expectedPostData, postData);

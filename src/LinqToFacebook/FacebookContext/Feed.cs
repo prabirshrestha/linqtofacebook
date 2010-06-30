@@ -17,8 +17,8 @@ namespace LinqToFacebook
         /// <returns></returns>
         public string WriteFeed(string message, string pictureUrl, string link, string linkName, string linkCaption, string linkDescription)
         {
-            string requestUrl, postData;
-            ValidateWriteFeedParams(message, pictureUrl, link, linkName, linkCaption, linkDescription, out requestUrl,
+            string path, postData;
+            ValidateWriteFeedParams(message, pictureUrl, link, linkName, linkCaption, linkDescription, out path,
                                     out postData);
             return null;
         }
@@ -32,7 +32,7 @@ namespace LinqToFacebook
         /// This method was created seperately in order to have unit testing without hitting the fb site.
         /// </remarks>
         internal void ValidateWriteFeedParams(string message, string pictureUrl, string link, string linkName, string linkCaption, string linkDescription,
-                                              out string requestUrl, out string postData)
+                                              out string path, out string postData)
         {
             if (string.IsNullOrEmpty(message))
                 throw new ArgumentNullException("message");
@@ -68,7 +68,7 @@ namespace LinqToFacebook
             postData = postDataParams.ToPostString();
 
             AssertRequiresAccessToken();
-            requestUrl = string.Format(GraphUrl, "me/feed?access_token=" + Settings.AccessToken);
+            path = string.Format("me/feed?access_token={0}", Settings.AccessToken);
         }
 
         #endregion
