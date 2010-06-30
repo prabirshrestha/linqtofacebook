@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Xunit;
 using Xunit.Extensions;
 
@@ -16,7 +17,7 @@ namespace LinqToFacebook.Tests.FacebookContextTests.Validations
         {
             // Arrange
             string path;
-            string postData;
+            IDictionary<string,string> postData;
 
             // Act
             _facebookContext.ValidateWriteFeedParams("dummy message", null, null, null, null, null, out path,
@@ -35,14 +36,14 @@ namespace LinqToFacebook.Tests.FacebookContextTests.Validations
         {
             // Arrange
             string path;
-            string postData;
+            IDictionary<string, string> postData;
 
             // Act
             _facebookContext.ValidateWriteFeedParams(message, pictureUrl, link, linkName, linkCaption, linkDescription,
                                                      out path, out postData);
 
             // Assert
-            Assert.Equal(expectedPostData, postData);
+            Assert.Equal(expectedPostData, postData.ToPostString());
         }
     }
 }

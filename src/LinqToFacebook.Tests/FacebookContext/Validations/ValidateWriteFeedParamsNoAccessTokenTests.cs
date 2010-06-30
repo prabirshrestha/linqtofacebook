@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace LinqToFacebook.Tests.FacebookContextTests.Validations
@@ -16,7 +17,7 @@ namespace LinqToFacebook.Tests.FacebookContextTests.Validations
         {
             // Arrange
             string path;
-            string postData;
+            IDictionary<string, string> postData;
 
             // Act/Arrage
             Assert.Throws<ArgumentNullException>(
@@ -30,7 +31,7 @@ namespace LinqToFacebook.Tests.FacebookContextTests.Validations
         {
             // Arrange
             string path;
-            string postData;
+            IDictionary<string, string> postData;
 
             // Act/Arrage
             Assert.Throws<AccessTokenRequiredException>(
@@ -44,7 +45,7 @@ namespace LinqToFacebook.Tests.FacebookContextTests.Validations
         {
             // Arrange
             string path;
-            string postData;
+            IDictionary<string, string> postData;
 
             // Act/Arrage
             Assert.Throws<ArgumentException>(
@@ -58,7 +59,7 @@ namespace LinqToFacebook.Tests.FacebookContextTests.Validations
         {
             // Arrange
             string path;
-            string postData;
+            IDictionary<string, string> postData;
 
             // Act/Arrage
             Assert.Throws<ArgumentException>(
@@ -72,7 +73,7 @@ namespace LinqToFacebook.Tests.FacebookContextTests.Validations
         {
             // Arrange
             string path;
-            string postData;
+            IDictionary<string, string> postData;
 
             // Act/Arrage
             Assert.Throws<ArgumentException>(

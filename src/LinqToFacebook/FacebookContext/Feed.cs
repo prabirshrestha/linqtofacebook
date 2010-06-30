@@ -17,7 +17,8 @@ namespace LinqToFacebook
         /// <returns></returns>
         public string WriteFeed(string message, string pictureUrl, string link, string linkName, string linkCaption, string linkDescription)
         {
-            string path, postData;
+            string path;
+            IDictionary<string, string> postData;
             ValidateWriteFeedParams(message, pictureUrl, link, linkName, linkCaption, linkDescription, out path,
                                     out postData);
             return null;
@@ -32,15 +33,15 @@ namespace LinqToFacebook
         /// This method was created seperately in order to have unit testing without hitting the fb site.
         /// </remarks>
         internal void ValidateWriteFeedParams(string message, string pictureUrl, string link, string linkName, string linkCaption, string linkDescription,
-                                              out string path, out string postData)
+                                              out string path, out IDictionary<string, string> postData)
         {
             if (string.IsNullOrEmpty(message))
                 throw new ArgumentNullException("message");
 
-            var postDataParams = new Dictionary<string, string> { { "message", message } };
+            postData = new Dictionary<string, string> { { "message", message } };
 
             if (!string.IsNullOrEmpty(pictureUrl))
-                postDataParams.Add("picture", pictureUrl);
+                postData.Add("picture", pictureUrl);
 
             if (string.IsNullOrEmpty(link))
             {   // this means name, caption and description should also be null or empty
@@ -56,16 +57,14 @@ namespace LinqToFacebook
             }
             else
             {
-                postDataParams.Add("link", link);
+                postData.Add("link", link);
                 if (!string.IsNullOrEmpty(linkName))
-                    postDataParams.Add("name", linkName);
+                    postData.Add("name", linkName);
                 if (!string.IsNullOrEmpty(linkCaption))
-                    postDataParams.Add("caption", linkCaption);
+                    postData.Add("caption", linkCaption);
                 if (!string.IsNullOrEmpty(linkDescription))
-                    postDataParams.Add("description", linkDescription);
+                    postData.Add("description", linkDescription);
             }
-
-            postData = postDataParams.ToPostString();
 
             AssertRequiresAccessToken();
             path = string.Format("me/feed?access_token={0}", Settings.AccessToken);
