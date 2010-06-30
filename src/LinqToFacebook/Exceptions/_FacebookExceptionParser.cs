@@ -10,7 +10,7 @@ namespace LinqToFacebook
             return Parse(jsonString.ToJToken());
         }
 
-        public static LinqToFacebookException Parse(JToken jToken)
+        private static LinqToFacebookException Parse(JToken jToken)
         {
             if (jToken == null)
                 throw new ArgumentNullException("jToken");
@@ -20,7 +20,7 @@ namespace LinqToFacebook
             return errorMessage != null ? ParseErrorMessage(jToken.Value<string>(errorMessage)) : null;
         }
 
-        private static LinqToFacebookException ParseErrorMessage(string errorMessage)
+        public static LinqToFacebookException ParseErrorMessage(string errorMessage)
         {
             if (string.IsNullOrEmpty(errorMessage))
                 return null;
