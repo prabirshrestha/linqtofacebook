@@ -12,7 +12,7 @@ namespace LinqToFacebook.Tests.FacebookContextTests.Validations
         }
 
         [Fact]
-        public void ValidateWriteFeedParams_Throws_ArgumentNullException_When_message_is_null()
+        public void ValidateWriteFeedParamsThrowsArgumentNullExceptionWhenMessageIsNull()
         {
             // Arrange
             string requestUrl;
@@ -22,6 +22,20 @@ namespace LinqToFacebook.Tests.FacebookContextTests.Validations
             Assert.Throws<ArgumentNullException>(
                 () =>
                 _facebookContext.ValidateWriteFeedParams(null, null, null, null, null, null, out requestUrl,
+                                                         out postData));
+        }
+
+        [Fact]
+        public void ValidateWriteFeedParamsThrowsAccessTokenRequiredExceptionWhenAccesstoeknIsNotPresent()
+        {
+            // Arrange
+            string requestUrl;
+            string postData;
+
+            // Act/Arrage
+            Assert.Throws<AccessTokenRequiredException>(
+                () =>
+                _facebookContext.ValidateWriteFeedParams("dummy message", null, null, null, null, null, out requestUrl,
                                                          out postData));
         }
     }
