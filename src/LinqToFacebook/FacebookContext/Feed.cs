@@ -68,7 +68,7 @@ namespace LinqToFacebook
             postData = postDataParams.ToPostString();
 
             AssertRequiresAccessToken();
-            requestUrl = string.Format("{0}{1}?access_token={2}", GraphUrl, "/me/feed", Settings.AccessToken);
+            requestUrl = string.Format(GraphUrl, "me/feed?access_token=" + Settings.AccessToken);
         }
 
         #endregion

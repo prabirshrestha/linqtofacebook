@@ -6,18 +6,67 @@ namespace LinqToFacebook
     {
         #region Synchronous Methods
 
+        #region Get
+
         public string Get(string path, IDictionary<string, string> parameters)
         {
-            return WebRequestHelpers.Get(string.Format(GraphUrl, path), parameters, Settings.CompressHttp,
-                                         Settings.UserAgent);
+            var result = WebRequestHelpers.Get(string.Format(GraphUrl, path), parameters, Settings.CompressHttp,
+                                               Settings.UserAgent);
+
+            var ex = FacebookExceptionParser.Parse(result);
+
+            if (ex != null)
+                throw ex;
+
+            return result;
         }
+
+        /// <summary>
+        /// Tries to execute get on Facebook Graph API
+        /// </summary>
+        /// <param name="path">Path of the url. ex: me/events</param>
+        /// <param name="parameters"></param>
+        /// <param name="result">Json string result from facebook.</param>
+        /// <returns>Returns true if successfully executed, otherwise false.</returns>
+        public bool TryGet(string path, IDictionary<string, string> parameters, out string result)
+        {
+            result = WebRequestHelpers.Get(string.Format(GraphUrl, path), parameters, Settings.CompressHttp,
+                                           Settings.UserAgent);
+
+            var ex = FacebookExceptionParser.Parse(result);
+
+            return ex == null;
+        }
+
+        #endregion
+
+        #region Post
 
         public string Post(string path, IDictionary<string, string> parameters)
         {
-            return WebRequestHelpers.Post(string.Format(GraphUrl, path), parameters, Settings.CompressHttp,
-                                          Settings.UserAgent);
+            var result = WebRequestHelpers.Post(string.Format(GraphUrl, path), parameters, Settings.CompressHttp,
+                                                Settings.UserAgent);
+
+            var ex = FacebookExceptionParser.Parse(result);
+
+            if (ex != null)
+                throw ex;
+
+            return result;
         }
 
+        public bool TryPost(string path, IDictionary<string, string> parameters, out string result)
+        {
+            result = WebRequestHelpers.Post(string.Format(GraphUrl, path), parameters, Settings.CompressHttp,
+                                                Settings.UserAgent);
+
+            var ex = FacebookExceptionParser.Parse(result);
+
+            return ex == null;
+        }
+
+        #endregion
+        
         #endregion
 
         #region Asynchronous Methods
@@ -25,62 +74,5 @@ namespace LinqToFacebook
         // todo async methods for get and post
 
         #endregion
-
-        //private static WebResponse RequestAsWebResponse(string requestUrl, string postString, bool compressHttp, bool useGet)
-        //{ // http://facebooktoolkit.codeplex.com/SourceControl/changeset/view/51096#420763
-        //    HttpWebRequest request;
-        //    if (useGet)
-        //    {
-        //        request = (HttpWebRequest)WebRequest.Create(requestUrl + "?" + postString);
-        //        request.Method = "GET";
-        //    }
-        //    else
-        //    {
-        //        request = (HttpWebRequest)WebRequest.Create(requestUrl);
-        //        request.MediaType = "POST";
-        //    }
-        //    request.KeepAlive = true;
-        //    request.ContentType = "application/x-www-form-urlencoded";
-
-        //    if (compressHttp)
-        //        request.Headers.Add("Accept-Encoding", "gzip,deflate");
-
-        //    if (!useGet && !string.IsNullOrEmpty(postString))
-        //    {
-        //        var parameterString = Encoding.UTF8.GetBytes(postString);
-        //        request.ContentLength = parameterString.Length;
-
-        //        using (var buffer = request.GetRequestStream())
-        //        {
-        //            buffer.Write(parameterString, 0, parameterString.Length);
-        //            buffer.Close();
-        //        }
-        //    }
-
-        //    return request.GetResponse();
-        //}
-
-        //public static string Request(string requestUrl, string postString, bool compressHttp, bool useGet, bool throwError)
-        //{
-        //    var response = RequestAsWebResponse(requestUrl, postString, compressHttp, useGet);
-        //    string result;
-
-        //    using (var reader = new StreamReader(response.GetResponseStream()))
-        //    {
-        //        result = reader.ReadToEnd();
-        //    }
-
-        //    if (throwError)
-        //        throw new NotImplementedException("throwError is not implemented yet. please pass it as false");
-        //    if (compressHttp)
-        //        throw new NotImplementedException("compressHttp is not implemented yet. please pass it as false");
-        //    return result;
-        //}
-
-        //public static JToken RequestAsJToken(string requestUrl, string postString, bool compressHttp, bool useGet, bool throwError)
-        //{
-        //    var jsonString = Request(requestUrl, postString, compressHttp, useGet, throwError);
-        //    return jsonString.ToJToken();
-        //}
     }
 }
