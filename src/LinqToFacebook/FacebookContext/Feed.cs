@@ -6,7 +6,7 @@ namespace LinqToFacebook
     public partial class FacebookContext
     {
         /// <summary>
-        /// 
+        /// Write to wall
         /// </summary>
         /// <param name="message"></param>
         /// <param name="link"></param>
