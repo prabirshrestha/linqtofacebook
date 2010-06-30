@@ -31,6 +31,7 @@ namespace LinqToFacebook.Tests.FacebookContextTests.Validations
         [InlineData("message", null, null, null, null, null, "message=message")]
         [InlineData("testing new message", null, null, null, null, null, "message=testing%20new%20message")]
         [InlineData("testing new message", null, "www.google.com", null, null, null, "message=testing%20new%20message&link=www.google.com")]
+        // todo: more tests
         public void PostData_Tests(string message, string pictureUrl, string link, string linkName, string linkCaption, string linkDescription, string expectedPostData)
         {
             // Arrange

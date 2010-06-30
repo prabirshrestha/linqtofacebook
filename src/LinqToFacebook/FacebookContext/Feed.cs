@@ -23,6 +23,8 @@ namespace LinqToFacebook
             return null;
         }
 
+        #region Helper Methods
+
         /// <summary>
         /// Helpers function to Validate parameters before writing the feed
         /// </summary>
@@ -30,7 +32,7 @@ namespace LinqToFacebook
         /// This method was created seperately in order to have unit testing without hitting the fb site.
         /// </remarks>
         internal void ValidateWriteFeedParams(string message, string pictureUrl, string link, string linkName, string linkCaption, string linkDescription,
-            out string requestUrl, out string postData)
+                                              out string requestUrl, out string postData)
         {
             if (string.IsNullOrEmpty(message))
                 throw new ArgumentNullException("message");
@@ -68,5 +70,8 @@ namespace LinqToFacebook
             AssertRequiresAccessToken();
             requestUrl = string.Format("{0}{1}?access_token={2}", GraphUrl, "/me/feed", Settings.AccessToken);
         }
+
+        #endregion
+
     }
 }

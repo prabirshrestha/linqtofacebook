@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace LinqToFacebook
 {
@@ -24,6 +27,17 @@ namespace LinqToFacebook
         internal static string UrlEncode(this string stringToEncode)
         {
             return Uri.EscapeDataString(stringToEncode);
+        }
+
+        internal static JToken ToJToken(this string jsonString)
+        {
+            using (var reader = new StringReader(jsonString))
+            {
+                using (var jsonTextReader = new JsonTextReader(reader))
+                {
+                    return JToken.ReadFrom(jsonTextReader);
+                }
+            }
         }
     }
 }

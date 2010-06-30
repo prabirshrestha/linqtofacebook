@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using System.Net;
 using System.Text;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace LinqToFacebook
@@ -63,18 +62,7 @@ namespace LinqToFacebook
         public static JToken RequestAsJToken(string requestUrl, string postString, bool compressHttp, bool useGet, bool throwError)
         {
             var jsonString = Request(requestUrl, postString, compressHttp, useGet, throwError);
-            return ToJToken(jsonString);
-        }
-
-        private static JToken ToJToken(string jsonString)
-        {
-            using (StringReader reader = new StringReader(jsonString))
-            {
-                using (JsonTextReader jsonTextReader = new JsonTextReader(reader))
-                {
-                    return JToken.ReadFrom(jsonTextReader);
-                }
-            }
+            return jsonString.ToJToken();
         }
     }
 }
