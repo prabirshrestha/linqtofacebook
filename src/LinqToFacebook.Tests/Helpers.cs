@@ -1,8 +1,9 @@
-﻿
+﻿using System;
+
 namespace LinqToFacebook.Tests
 {
-    class Helpers
+    public class Helpers
     {
-        public static string AccessToken { get { return "put your access token here"; } }
+        public static string AccessToken { get { throw new NotImplementedException(); } }
     }
 }

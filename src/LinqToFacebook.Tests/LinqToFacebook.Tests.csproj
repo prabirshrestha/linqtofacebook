@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;EXECUTE_POSTS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FacebookContext\GenericWebRequests\GetTests.cs" />
+    <Compile Include="FacebookContext\WriteFeedTests.cs" />
     <Compile Include="FacebookContext\Validations\ValidateWriteFeedParamsDummyAccessTokenTests.cs" />
     <Compile Include="FacebookContext\Validations\ValidateWriteFeedParamsNoAccessTokenTests.cs" />
     <Compile Include="Helpers.cs" />

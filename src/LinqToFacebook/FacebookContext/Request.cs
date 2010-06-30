@@ -12,8 +12,10 @@ namespace LinqToFacebook
 
         public string Get(string path, IDictionary<string, string> parameters)
         {
+            AddAccessTokenIfRequriedTo(parameters);
+
             var result = WebRequestHelpers.Get(string.Format(GraphUrl, path), parameters, Settings.CompressHttp,
-                                               Settings.UserAgent);
+                                                   Settings.UserAgent);
 
             var ex = FacebookExceptionParser.Parse(result);
 
@@ -38,6 +40,8 @@ namespace LinqToFacebook
         /// <returns>Returns true if successfully executed, otherwise false.</returns>
         public bool TryGet(string path, IDictionary<string, string> parameters, out string result)
         {
+            AddAccessTokenIfRequriedTo(parameters);
+
             result = WebRequestHelpers.Get(string.Format(GraphUrl, path), parameters, Settings.CompressHttp,
                                            Settings.UserAgent);
 
@@ -51,6 +55,8 @@ namespace LinqToFacebook
 
         public bool TryGet<T>(string path, IDictionary<string, string> parameters, out T obj)
         {
+            AddAccessTokenIfRequriedTo(parameters);
+
             string json = WebRequestHelpers.Get(string.Format(GraphUrl, path), parameters, Settings.CompressHttp,
                                            Settings.UserAgent);
 
@@ -80,6 +86,8 @@ namespace LinqToFacebook
 
         public string Post(string path, IDictionary<string, string> parameters)
         {
+            AddAccessTokenIfRequriedTo(parameters);
+
             var result = WebRequestHelpers.Post(string.Format(GraphUrl, path), parameters, Settings.CompressHttp,
                                                 Settings.UserAgent);
 
@@ -99,6 +107,8 @@ namespace LinqToFacebook
 
         public bool TryPost(string path, IDictionary<string, string> parameters, out string result)
         {
+            AddAccessTokenIfRequriedTo(parameters);
+
             result = WebRequestHelpers.Post(string.Format(GraphUrl, path), parameters, Settings.CompressHttp,
                                                 Settings.UserAgent);
 
@@ -112,6 +122,8 @@ namespace LinqToFacebook
 
         public bool TryPost<T>(string path, IDictionary<string, string> parameters, out T obj)
         {
+            AddAccessTokenIfRequriedTo(parameters);
+
             string json = WebRequestHelpers.Post(string.Format(GraphUrl, path), parameters, Settings.CompressHttp,
                                            Settings.UserAgent);
 

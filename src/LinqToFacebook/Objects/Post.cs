@@ -11,13 +11,13 @@ namespace LinqToFacebook
     [DataContract]
     public class FacebookPost : FacebookObject
     {
-        /// <summary>
-        /// An object containing the ID and name of the user who posted the message. [from]
-        /// </summary>
-        [DataMember(Name = "from")]
-        public string From { get; set; }
+        ///// <summary>
+        ///// An object containing the ID and name of the user who posted the message. [from]
+        ///// </summary>
+        //[DataMember(Name = "from")]
+        //public string From { get; set; }
 
-        // todo: to
+        // todo: to,from
 
         /// <summary>
         /// The message. [message]

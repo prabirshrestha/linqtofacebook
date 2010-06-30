@@ -21,7 +21,7 @@ namespace LinqToFacebook
             IDictionary<string, string> postData;
             ValidateWriteFeedParams(message, pictureUrl, link, linkName, linkCaption, linkDescription, out path,
                                     out postData);
-            return null;
+            return Post(path, postData).GetFacebookID();
         }
 
         #region Helper Methods

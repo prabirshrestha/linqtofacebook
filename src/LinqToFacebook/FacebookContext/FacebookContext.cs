@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace LinqToFacebook
@@ -32,6 +33,18 @@ namespace LinqToFacebook
         {
             if (string.IsNullOrEmpty(Settings.AccessToken))
                 throw new AccessTokenRequiredException();
+        }
+
+        private void AddAccessTokenIfRequriedTo(IDictionary<string, string> parameters)
+        {
+            if (string.IsNullOrEmpty(Settings.AccessToken))
+                return;
+
+            if (parameters == null)
+                parameters = new Dictionary<string, string>();
+
+            if (!parameters.ContainsKey("access_token"))
+                parameters.Add("access_token", Settings.AccessToken);
         }
     }
 }
