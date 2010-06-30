@@ -1,4 +1,5 @@
 using System.Runtime.Serialization;
+using LinqExtender.Attributes;
 
 namespace LinqToFacebook
 {
@@ -9,6 +10,9 @@ namespace LinqToFacebook
         /// Unique facebook object identifier
         /// </summary>
         [DataMember(Name = "id")]
+        [UniqueIdentifier]
         public string ID { get; set; }
+
+        internal const string KeyId = "ID";
     }
 }

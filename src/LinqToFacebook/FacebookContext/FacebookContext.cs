@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
+using LinqToFacebook.Queries;
 
 namespace LinqToFacebook
 {
@@ -20,14 +21,17 @@ namespace LinqToFacebook
         private const string GraphUrl = "https://graph.facebook.com/{0}";
 
         public FacebookContext()
+            : this(new FacebookSettings())
         {
-            Settings = new FacebookSettings();
         }
 
         public FacebookContext(FacebookSettings facebookSettings)
         {
             Settings = facebookSettings;
+            _facebookQueryFactory = new FacebookQueryFactory();
         }
+
+        #region Helpers
 
         private void AssertRequiresAccessToken()
         {
@@ -46,5 +50,8 @@ namespace LinqToFacebook
             if (!parameters.ContainsKey("access_token"))
                 parameters.Add("access_token", Settings.AccessToken);
         }
+
+        #endregion
+
     }
 }
