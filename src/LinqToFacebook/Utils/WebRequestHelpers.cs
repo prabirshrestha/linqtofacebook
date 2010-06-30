@@ -35,12 +35,9 @@ namespace LinqToFacebook
             }
             catch (WebException ex)
             {
-                using (var response = (HttpWebResponse)request.GetResponse())
+                using (var reader = new StreamReader(ex.Response.GetResponseStream()))
                 {
-                    using (var reader = new StreamReader(response.GetResponseStream()))
-                    {
-                        return reader.ReadToEnd();
-                    }
+                    return reader.ReadToEnd();
                 }
             }
         }

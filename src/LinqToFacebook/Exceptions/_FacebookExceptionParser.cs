@@ -1,5 +1,6 @@
 using System;
-using Newtonsoft.Json.Linq;
+using System.Runtime.Serialization;
+using LinqToFacebook.Utilities;
 
 namespace LinqToFacebook
 {
@@ -7,25 +8,20 @@ namespace LinqToFacebook
     {
         public static LinqToFacebookException Parse(string jsonString)
         {
-            return Parse(jsonString.ToJToken());
+            if (string.Compare("{\"error\"", 0, jsonString, 0, 8, StringComparison.OrdinalIgnoreCase) == 0)
+            {   // if contains error_code then it has error else no
+                var errorMessage = jsonString.ToJToken()["error"].ToString();
+                var errObj = FacebookUtilities.DeserializeJsonObject<FacebookApiExceptionSchema>(errorMessage);
+                throw new FacebookApiException(errObj.error_code, errObj.message);
+            }
+            return null;
         }
 
-        private static LinqToFacebookException Parse(JToken jToken)
+        internal class FacebookApiExceptionSchema
         {
-            if (jToken == null)
-                throw new ArgumentNullException("jToken");
-
-            var errorMessage = jToken["error"];
-
-            return errorMessage != null ? ParseErrorMessage(jToken.Value<string>(errorMessage)) : null;
-        }
-
-        public static LinqToFacebookException ParseErrorMessage(string errorMessage)
-        {
-            if (string.IsNullOrEmpty(errorMessage))
-                return null;
-
-            return new LinqToFacebookException(errorMessage);
+            public string type { get; set; }
+            public int error_code { get; set; }
+            public string message { get; set; }
         }
     }
 }

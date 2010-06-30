@@ -18,7 +18,7 @@ namespace LinqToFacebook.Tests.FacebookContextTests.GenericWebRequests
             // Arranged in ctor
 
             // Act: http_get : https://graph.facebook.com/prabirshrestha
-            var response = _fbContext.Get("prabirshrestha", null);
+            var response = _fbContext.Get("prabirshresth", null);
 
             // Assert
             var firstName = response.ToJToken().Value<string>("first_name");

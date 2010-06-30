@@ -4,33 +4,33 @@ namespace LinqToFacebook
 {
     public class FacebookApiException : LinqToFacebookException
     {
-        private readonly string _errorCode;
+        private readonly int _errorCode;
 
         public FacebookApiException()
-            : this(null, "Unknown Facebook Api Exception Occured", null)
+            : this(0, "Unknown Facebook Api Exception Occured", null)
         {
 
         }
 
         public FacebookApiException(string message)
-            : this(null, message, null)
+            : this(0, message, null)
         {
 
         }
 
-        public FacebookApiException(string errorCode, string message)
+        public FacebookApiException(int errorCode, string message)
             : this(errorCode, message, null)
         {
 
         }
 
-        public FacebookApiException(string errorCode, string message, Exception innerException)
+        public FacebookApiException(int errorCode, string message, Exception innerException)
             : base(message, innerException)
         {
             _errorCode = errorCode;
         }
 
-        public string ErrorCode
+        public int ErrorCode
         {
             get { return _errorCode; }
         }
