@@ -1,5 +1,5 @@
+using System.Linq;
 using Xunit;
-using LinqToFacebook.Utilities;
 
 namespace LinqToFacebook.Tests.FacebookContextTests.GenericWebRequests
 {
@@ -23,6 +23,21 @@ namespace LinqToFacebook.Tests.FacebookContextTests.GenericWebRequests
             // Assert
             var firstName = response.ToJToken().Value<string>("first_name");
             Assert.Equal("Prabir", firstName);
+        }
+
+        [Fact]
+        public void Linq_GetUserById()
+        {
+            // Arrange
+            var query = from user in _fbContext.Users
+                        where user.ID == "100001241534829"
+                        select user;
+
+            // Act
+            var u = query.First();
+
+            // Assert
+            Assert.Equal("Jimmi Hendrix", u.Name);
         }
     }
 }

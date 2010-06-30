@@ -1,3 +1,4 @@
+using System;
 using LinqExtender.Interfaces;
 
 namespace LinqToFacebook.Repositories

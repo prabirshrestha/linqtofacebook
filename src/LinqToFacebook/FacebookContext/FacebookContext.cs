@@ -28,7 +28,7 @@ namespace LinqToFacebook
         public FacebookContext(FacebookSettings facebookSettings)
         {
             Settings = facebookSettings;
-            _facebookQueryFactory = new FacebookQueryFactory();
+            InitLinqExtender();
         }
 
         #region Helpers
@@ -39,7 +39,7 @@ namespace LinqToFacebook
                 throw new AccessTokenRequiredException();
         }
 
-        private void AddAccessTokenIfRequriedTo(IDictionary<string, string> parameters)
+        private void AddAccessTokenIfRequriedTo(ref IDictionary<string, string> parameters)
         {
             if (string.IsNullOrEmpty(Settings.AccessToken))
                 return;

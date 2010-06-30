@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Xunit;
+﻿using Xunit;
 
 namespace LinqToFacebook.Tests.GenericWebRequests
 {
@@ -29,21 +25,6 @@ namespace LinqToFacebook.Tests.GenericWebRequests
 
             // Assert
             Assert.Equal(message, post.Message);
-        }
-
-        [Fact]
-        public void Linq_GetUserById()
-        {
-            // Arrange
-            var query = from user in _fbContext.Users
-                        where user.ID == "100001241534829"
-                        select user;
-
-            // Act
-            var u = query.First();
-
-            // Assert
-            Assert.Equal("Jimmi Hendrix", u.Name);
         }
     }
 
