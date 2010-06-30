@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace LinqToFacebook.Utilities
 {
-    public static class Utilities
+    public static class FacebookUtilities
     {
         #region Json Serializers/Deserializers
 
