@@ -35,15 +35,24 @@ namespace LinqToFacebook
             if (string.IsNullOrEmpty(message))
                 throw new ArgumentNullException("message");
 
-            AssertRequiresAccessToken();
-
-            requestUrl = string.Format("{0}{1}?access_token={2}", GraphUrl, "/me/feed", Settings.AccessToken);
             var postDataParams = new Dictionary<string, string> { { "message", message } };
 
             if (!string.IsNullOrEmpty(pictureUrl))
                 postDataParams.Add("picture", pictureUrl);
 
-            if (!string.IsNullOrEmpty(link))
+            if (string.IsNullOrEmpty(link))
+            {   // this means name, caption and description should also be null or empty
+                if (!string.IsNullOrEmpty(linkName))
+                    throw new ArgumentException("Since argument 'link' is empty, 'linkName' must also be empty",
+                                                "linkName");
+                if (!string.IsNullOrEmpty(linkCaption))
+                    throw new ArgumentException("Since argument 'link' is empty, 'linkCaption' must also be empty",
+                                                "linkCaption");
+                if (!string.IsNullOrEmpty(linkDescription))
+                    throw new ArgumentException("Since argument 'link' is empty, 'linkDescription' must also be empty",
+                                                "linkDescription");
+            }
+            else
             {
                 postDataParams.Add("link", link);
                 if (!string.IsNullOrEmpty(linkName))
@@ -55,6 +64,9 @@ namespace LinqToFacebook
             }
 
             postData = postDataParams.ToString();
+
+            AssertRequiresAccessToken();
+            requestUrl = string.Format("{0}{1}?access_token={2}", GraphUrl, "/me/feed", Settings.AccessToken);
         }
     }
 }

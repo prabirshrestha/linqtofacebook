@@ -48,7 +48,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FacebookContext\Validations\ValidateWriteFeedParamsTests.cs" />
+    <Compile Include="FacebookContext\Validations\ValidateWriteFeedParamsDummyAccessTokenTests.cs" />
+    <Compile Include="FacebookContext\Validations\ValidateWriteFeedParamsNoAccessTokenTests.cs" />
     <Compile Include="FacebookContext\WebRequestTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
