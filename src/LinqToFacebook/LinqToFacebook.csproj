@@ -40,6 +40,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -49,6 +50,7 @@
     <Compile Include="FacebookContext\FacebookContext.cs" />
     <Compile Include="FacebookContext\Request.cs" />
     <Compile Include="FacebookSettings.cs" />
+    <Compile Include="Objects\Post.cs" />
     <Compile Include="Objects\_FacebookObject.cs" />
     <Compile Include="Objects\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
